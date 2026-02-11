@@ -13,7 +13,9 @@ export default function HeroSequence() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [imagesLoaded, setImagesLoaded] = useState(false);
     const [showContent, setShowContent] = useState(false);
+    const [startFadeOut, setStartFadeOut] = useState(false);
     const [mounted, setMounted] = useState(false);
+
     const imagesRef = useRef<HTMLImageElement[]>([]);
     const frameRef = useRef(0);
 
@@ -34,7 +36,7 @@ export default function HeroSequence() {
         if (counterElement && circleElement) {
             let count = 0;
             const interval = setInterval(() => {
-                count += Math.random() * 2; // Slower increment for longer display
+                count += Math.random() * 5; // Updated speed for 2s duration
                 if (count > 100) count = 100;
 
                 counterElement.textContent = Math.floor(count).toString();
@@ -46,7 +48,7 @@ export default function HeroSequence() {
                 if (count >= 100) {
                     clearInterval(interval);
                 }
-            }, 50); // Faster updates for smoother animation
+            }, 50);
 
             return () => clearInterval(interval);
         }
@@ -78,10 +80,15 @@ export default function HeroSequence() {
                 await Promise.all(imagePromises);
                 setImagesLoaded(true);
 
-                // Keep preloader visible for minimum 3 seconds for animations
+                // Keep preloader visible for minimum 2 seconds
                 setTimeout(() => {
-                    setShowContent(true);
-                }, 3000);
+                    setStartFadeOut(true);
+
+                    // Allow time for fade transition before unmounting
+                    setTimeout(() => {
+                        setShowContent(true);
+                    }, 800);
+                }, 2000);
             } catch (error) {
                 console.error('Failed to load images:', error);
             }
@@ -89,6 +96,85 @@ export default function HeroSequence() {
 
         loadImages();
     }, []);
+
+    // Text Animations - Triggered when preloader finishes
+    useEffect(() => {
+        if (!showContent || !mounted) return;
+
+        const heroAnimation = gsap.timeline({ delay: 0.5 });
+
+        heroAnimation
+            // Line 1: Slide from LEFT
+            .fromTo('.hero-line-1',
+                {
+                    opacity: 0,
+                    x: -150,
+                    scale: 0.9,
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 1,
+                    ease: 'power4.out',
+                }
+            )
+            // Line 2: Slide from RIGHT
+            .fromTo('.hero-line-2',
+                {
+                    opacity: 0,
+                    x: 150,
+                    scale: 0.9,
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 1,
+                    ease: 'power4.out',
+                },
+                '-=0.6'
+            )
+            // Line 3: Typing Effect with fade in
+            .to('.hero-line-3', {
+                opacity: 1,
+                duration: 0.5,
+                ease: 'power2.out',
+            }, '-=0.3')
+            // Subtitle: Slide UP from bottom
+            .fromTo('.hero-subtitle',
+                {
+                    opacity: 0,
+                    y: 40,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                },
+                '-=0.8'
+            )
+            // CTA: Fade in with slight scale
+            .fromTo('.hero-cta',
+                {
+                    opacity: 0,
+                    y: 20,
+                    scale: 0.95,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.6,
+                    ease: 'back.out(1.2)',
+                },
+                '-=0.4'
+            );
+
+    }, [showContent, mounted]);
+
+
 
     useEffect(() => {
         if (!imagesLoaded || !canvasRef.current || !containerRef.current) return;
@@ -216,21 +302,27 @@ export default function HeroSequence() {
 
                         {/* Line 3 - Typing Effect with Neon Gradient */}
                         <span
-                            className="block opacity-0 hero-line-3 bg-gradient-to-r from-amber-300 via-orange-400 to-yellow-500 text-transparent bg-clip-text font-black relative"
+                            className="block opacity-0 hero-line-3 font-black relative"
                             style={{
-                                filter: 'drop-shadow(0 0 25px rgba(251, 191, 36, 0.8)) drop-shadow(0 0 50px rgba(249, 115, 22, 0.6))',
+                                filter: 'drop-shadow(0 0 25px rgba(244, 63, 94, 0.6)) drop-shadow(0 0 50px rgba(168, 85, 247, 0.4))',
                                 textShadow: 'none'
                             }}
                         >
-                            <span className="typing-text">Through Motion</span>
+                            <span className="bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text">
+                                Through Motion
+                            </span>
                         </span>
                     </h1>
+                </div>
+            </div>
 
-                    {/* Subtitle - Fades UP from bottom */}
+            {/* Subtitle - Bottom Right Corner */}
+            <div className="absolute bottom-32 md:bottom-24 right-0 z-20 px-6 md:px-8 text-right" style={{ transform: 'translateY(-15px)' }}>
+                <div className="max-w-xl ml-auto">
                     <p
-                        className="text-base md:text-lg lg:text-xl text-white opacity-0 hero-subtitle max-w-2xl font-medium bg-black/30 backdrop-blur-sm px-4 py-2 rounded-lg inline-block"
+                        className="text-base md:text-lg lg:text-xl text-white opacity-0 hero-subtitle font-medium bg-black/40 backdrop-blur-md px-6 py-4 rounded-xl border border-white/10 inline-block shadow-2xl"
                         style={{
-                            textShadow: '0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.7)'
+                            textShadow: '0 2px 4px rgba(0,0,0,0.5)'
                         }}
                     >
                         Crafting immersive digital experiences with cutting-edge animations
@@ -260,88 +352,90 @@ export default function HeroSequence() {
             </div>
 
             {/* Enhanced Minimal Preloader */}
-            {!showContent && mounted && (
-                <div className={`absolute inset-0 z-30 flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black preloader-minimal ${imagesLoaded ? 'preloader-fadeout' : ''}`}>
-                    {/* Animated grid background */}
-                    <div className="absolute inset-0 opacity-10">
-                        <div className="grid-pattern"></div>
-                    </div>
-
-                    {/* Preloader content */}
-                    <div className="relative z-10 text-center">
-                        {/* Name with split design */}
-                        <div className="mb-12">
-                            <h1
-                                className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-2 tracking-tight preloader-name-minimal"
-                                style={{
-                                    letterSpacing: '-0.03em',
-                                    textShadow: '0 0 40px rgba(255,255,255,0.1)'
-                                }}
-                            >
-                                TANVEEN
-                            </h1>
-                            <h2
-                                className="text-3xl md:text-5xl lg:text-6xl font-light text-white/30 tracking-wide preloader-name-minimal"
-                                style={{
-                                    letterSpacing: '0.3em',
-                                    animation: 'slideUp 0.8s ease-out 0.2s both'
-                                }}
-                            >
-                                AMBROSE
-                            </h2>
+            {
+                !showContent && mounted && (
+                    <div className={`absolute inset-0 z-30 flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black preloader-minimal ${startFadeOut ? 'preloader-fadeout' : ''}`}>
+                        {/* Animated grid background */}
+                        <div className="absolute inset-0 opacity-10">
+                            <div className="grid-pattern"></div>
                         </div>
 
-                        {/* Circular progress with counter */}
-                        <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto mb-8">
-                            {/* Circular progress ring */}
-                            <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
-                                <circle
-                                    cx="50"
-                                    cy="50"
-                                    r="45"
-                                    fill="none"
-                                    stroke="rgba(255,255,255,0.1)"
-                                    strokeWidth="2"
-                                />
-                                <circle
-                                    cx="50"
-                                    cy="50"
-                                    r="45"
-                                    fill="none"
-                                    stroke="white"
-                                    strokeWidth="2"
-                                    strokeDasharray="283"
-                                    strokeDashoffset="283"
-                                    className="preloader-circle"
-                                    strokeLinecap="round"
-                                />
-                            </svg>
-
-                            {/* Counter in center */}
-                            <div className="absolute inset-0 flex items-center justify-center">
-                                <div
-                                    className="text-4xl md:text-5xl font-black text-white preloader-counter"
+                        {/* Preloader content */}
+                        <div className="relative z-10 text-center">
+                            {/* Name with split design */}
+                            <div className="mb-12">
+                                <h1
+                                    className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-2 tracking-tight preloader-name-minimal"
                                     style={{
-                                        fontVariantNumeric: 'tabular-nums',
-                                        letterSpacing: '-0.05em'
+                                        letterSpacing: '-0.03em',
+                                        textShadow: '0 0 40px rgba(255,255,255,0.1)'
                                     }}
                                 >
-                                    <span className="counter-value">0</span>
+                                    TANVEEN
+                                </h1>
+                                <h2
+                                    className="text-3xl md:text-5xl lg:text-6xl font-light text-white/30 tracking-wide preloader-name-minimal"
+                                    style={{
+                                        letterSpacing: '0.3em',
+                                        animation: 'slideUp 0.8s ease-out 0.2s both'
+                                    }}
+                                >
+                                    AMBROSE
+                                </h2>
+                            </div>
+
+                            {/* Circular progress with counter */}
+                            <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto mb-8">
+                                {/* Circular progress ring */}
+                                <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
+                                    <circle
+                                        cx="50"
+                                        cy="50"
+                                        r="45"
+                                        fill="none"
+                                        stroke="rgba(255,255,255,0.1)"
+                                        strokeWidth="2"
+                                    />
+                                    <circle
+                                        cx="50"
+                                        cy="50"
+                                        r="45"
+                                        fill="none"
+                                        stroke="white"
+                                        strokeWidth="2"
+                                        strokeDasharray="283"
+                                        strokeDashoffset="283"
+                                        className="preloader-circle"
+                                        strokeLinecap="round"
+                                    />
+                                </svg>
+
+                                {/* Counter in center */}
+                                <div className="absolute inset-0 flex items-center justify-center">
+                                    <div
+                                        className="text-4xl md:text-5xl font-black text-white preloader-counter"
+                                        style={{
+                                            fontVariantNumeric: 'tabular-nums',
+                                            letterSpacing: '-0.05em'
+                                        }}
+                                    >
+                                        <span className="counter-value">0</span>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {/* Subtitle with dots */}
-                        <div className="flex items-center justify-center gap-3 preloader-label">
-                            <div className="w-8 h-px bg-white/20"></div>
-                            <p className="text-xs tracking-[0.3em] text-white/40 uppercase">
-                                Loading
-                            </p>
-                            <div className="w-8 h-px bg-white/20"></div>
+                            {/* Subtitle with dots */}
+                            <div className="flex items-center justify-center gap-3 preloader-label">
+                                <div className="w-8 h-px bg-white/20"></div>
+                                <p className="text-xs tracking-[0.3em] text-white/40 uppercase">
+                                    Loading
+                                </p>
+                                <div className="w-8 h-px bg-white/20"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            )}
-        </div>
+                )
+            }
+        </div >
     );
 }

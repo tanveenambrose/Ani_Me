@@ -61,8 +61,10 @@ export default function AboutSection() {
 
     return (
         <section
+            id="about"
             ref={sectionRef}
             className="min-h-screen bg-[#12121a] py-24 px-4"
+            suppressHydrationWarning
         >
             <div className="max-w-7xl mx-auto">
                 {/* Section Header */}

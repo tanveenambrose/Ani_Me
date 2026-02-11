@@ -1,6 +1,4 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 * {
     margin: 0;
@@ -243,13 +241,13 @@ body {
     animation: fadeIn 1s ease-out 0.8s both;
 }
 
-/* Typing effect for gradient text - Updated to gold/orange */
+/* Typing effect for gradient text - Updated to Rose/Fuchsia */
 .typing-text {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
     width: 0;
-    border-right: 3px solid rgba(251, 191, 36, 0.8);
+    border-right: 3px solid rgba(244, 63, 94, 0.8);
     animation: blink-caret 0.75s step-end infinite;
 }
 
@@ -257,7 +255,7 @@ body {
 
     from,
     to {
-        border-color: rgba(251, 191, 36, 0.8);
+        border-color: rgba(244, 63, 94, 0.8);
     }
 
     50% {
