@@ -61,11 +61,8 @@ export default function HeroSequence() {
 
         // Set canvas size based on first image
         const setCanvasSize = () => {
-            const container = containerRef.current;
-            if (!container) return;
-
-            const containerWidth = container.clientWidth;
-            const containerHeight = container.clientHeight;
+            const containerWidth = window.innerWidth;
+            const containerHeight = window.innerHeight;
 
             const imageAspect = firstImage.width / firstImage.height;
             const containerAspect = containerWidth / containerHeight;
@@ -127,11 +124,11 @@ export default function HeroSequence() {
     return (
         <div
             ref={containerRef}
-            className="hero-sequence relative w-full h-screen overflow-hidden bg-[#0a0a0f] flex flex-col"
+            className="hero-sequence relative w-full h-screen overflow-hidden bg-[#0a0a0f]"
         >
-            {/* Hero Text Content - Top Section */}
-            <div className="relative z-20 flex-shrink-0 pt-24 pb-8 px-4">
-                <div className="max-w-7xl mx-auto text-center">
+            {/* Hero Text Content - Top Left Corner */}
+            <div className="absolute top-0 left-0 right-0 z-20 pt-24 px-8">
+                <div className="max-w-7xl mx-auto">
                     <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4 leading-tight">
                         <span className="block opacity-0 hero-line-1">Bringing Your</span>
                         <span className="block opacity-0 hero-line-2">Vision to Life</span>
@@ -139,22 +136,23 @@ export default function HeroSequence() {
                             Through Motion
                         </span>
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-300 mb-6 opacity-0 hero-subtitle max-w-2xl mx-auto">
+                    <p className="text-lg md:text-xl text-gray-300 opacity-0 hero-subtitle max-w-2xl">
                         Crafting immersive digital experiences with cutting-edge animations
                     </p>
                 </div>
             </div>
 
-            {/* Canvas for image sequence - Center/Bottom Section */}
-            <div className="relative z-10 flex-1 flex items-center justify-center px-4">
+            {/* Canvas for image sequence - Full Screen */}
+            <div className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden">
                 <canvas
                     ref={canvasRef}
-                    className="max-w-full max-h-full opacity-90 rounded-2xl shadow-2xl"
+                    className="w-full h-full"
+                    style={{ objectFit: 'cover' }}
                 />
             </div>
 
-            {/* CTA Buttons - Bottom Section */}
-            <div className="relative z-20 flex-shrink-0 pb-12 px-4">
+            {/* CTA Buttons - Bottom Center */}
+            <div className="absolute bottom-0 left-0 right-0 z-20 pb-12 px-4">
                 <div className="flex flex-wrap gap-4 justify-center opacity-0 hero-cta">
                     <button className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl font-semibold text-lg hover:scale-105 transition-transform shadow-lg">
                         View Our Work
