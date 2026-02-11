@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: white;
+    overflow-x: hidden;
+}
+
+.hero-line-1,
+.hero-line-2,
+.hero-line-3,
+.hero-subtitle,
+.hero-cta {
+    transform: translateY(30px);
+}
+
+/* Loading animations */
+@keyframes pulse {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Visual card animations */
+.visual-card-1,
+.visual-card-2,
+.visual-card-3 {
+    transition: transform 0.5s ease-out;
+}
+
+.visual-card-1:hover {
+    transform: translateY(-10px) rotate(2deg);
+}
+
+.visual-card-2:hover {
+    transform: translateY(-10px) rotate(-2deg);
+}
+
+.visual-card-3:hover {
+    transform: translateY(-10px) rotate(3deg);
+}
+
+/* Smooth transitions */
+* {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
