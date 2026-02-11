@@ -19,12 +19,26 @@ body {
     overflow-x: hidden;
 }
 
-.hero-line-1,
-.hero-line-2,
-.hero-line-3,
-.hero-subtitle,
-.hero-cta {
-    transform: translateY(30px);
+/* Typing effect for gradient text */
+.typing-text {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+    border-right: 3px solid rgba(6, 182, 212, 0.8);
+    animation: blink-caret 0.75s step-end infinite;
+}
+
+@keyframes blink-caret {
+
+    from,
+    to {
+        border-color: rgba(6, 182, 212, 0.8);
+    }
+
+    50% {
+        border-color: transparent;
+    }
 }
 
 /* Loading animations */

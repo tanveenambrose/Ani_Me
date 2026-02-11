@@ -147,26 +147,52 @@ export default function HeroSequence() {
             ref={containerRef}
             className="hero-sequence relative w-full h-screen overflow-hidden bg-[#0a0a0f]"
         >
+            {/* Dark Gradient Overlay for Text Visibility */}
+            <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-black/80 via-black/40 to-transparent z-15 pointer-events-none" />
+
             {/* Hero Text Content - Top Left Corner */}
-            <div className="absolute top-0 left-0 right-0 z-20 pt-24 px-8">
+            <div className="absolute top-0 left-0 right-0 z-20 pt-20 md:pt-24 px-6 md:px-8">
                 <div className="max-w-7xl mx-auto">
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-4 leading-tight">
-                        <span className="block opacity-0 hero-line-1 text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
-                            Bringing Your
-                        </span>
-                        <span className="block opacity-0 hero-line-2 text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
-                            Vision to Life
-                        </span>
+                    <h1 className="text-3xl md:text-5xl lg:text-7xl font-black mb-6 leading-tight">
+                        {/* Line 1 - Slides from LEFT */}
                         <span
-                            className="block opacity-0 hero-line-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text"
+                            className="block opacity-0 hero-line-1 text-white font-extrabold"
                             style={{
-                                filter: 'drop-shadow(0 0 20px rgba(34, 211, 238, 0.6)) drop-shadow(0 0 40px rgba(147, 51, 234, 0.4))'
+                                textShadow: '0 0 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.7), 2px 2px 4px rgba(0,0,0,1)',
                             }}
                         >
-                            Through Motion
+                            Bringing Your
+                        </span>
+
+                        {/* Line 2 - Slides from RIGHT */}
+                        <span
+                            className="block opacity-0 hero-line-2 text-white font-extrabold"
+                            style={{
+                                textShadow: '0 0 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.7), 2px 2px 4px rgba(0,0,0,1)',
+                            }}
+                        >
+                            Vision to Life
+                        </span>
+
+                        {/* Line 3 - Typing Effect with Neon Gradient */}
+                        <span
+                            className="block opacity-0 hero-line-3 bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 text-transparent bg-clip-text font-black relative"
+                            style={{
+                                filter: 'drop-shadow(0 0 25px rgba(6, 182, 212, 0.8)) drop-shadow(0 0 50px rgba(147, 51, 234, 0.6))',
+                                textShadow: 'none'
+                            }}
+                        >
+                            <span className="typing-text">Through Motion</span>
                         </span>
                     </h1>
-                    <p className="text-lg md:text-xl text-cyan-100 opacity-0 hero-subtitle max-w-2xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+
+                    {/* Subtitle - Fades UP from bottom */}
+                    <p
+                        className="text-base md:text-lg lg:text-xl text-white opacity-0 hero-subtitle max-w-2xl font-medium bg-black/30 backdrop-blur-sm px-4 py-2 rounded-lg inline-block"
+                        style={{
+                            textShadow: '0 2px 8px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.7)'
+                        }}
+                    >
                         Crafting immersive digital experiences with cutting-edge animations
                     </p>
                 </div>

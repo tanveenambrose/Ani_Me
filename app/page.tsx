@@ -39,38 +39,90 @@ export default function Home() {
 
         gsap.ticker.lagSmoothing(0);
 
-        // Animate hero text on load
-        const heroAnimation = gsap.timeline({ delay: 0.5 });
+        // Advanced hero text animations with directional slides
+        const heroAnimation = gsap.timeline({ delay: 0.8 });
 
         heroAnimation
-            .to('.hero-line-1', {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: 'power3.out',
-            })
-            .to('.hero-line-2', {
-                opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: 'power3.out',
-            }, '-=0.4')
+            // Line 1: Slide from LEFT
+            .fromTo('.hero-line-1',
+                {
+                    opacity: 0,
+                    x: -150,
+                    scale: 0.9,
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 1,
+                    ease: 'power4.out',
+                }
+            )
+            // Line 2: Slide from RIGHT
+            .fromTo('.hero-line-2',
+                {
+                    opacity: 0,
+                    x: 150,
+                    scale: 0.9,
+                },
+                {
+                    opacity: 1,
+                    x: 0,
+                    scale: 1,
+                    duration: 1,
+                    ease: 'power4.out',
+                },
+                '-=0.6'
+            )
+            // Line 3: Typing Effect with fade in
             .to('.hero-line-3', {
                 opacity: 1,
-                y: 0,
-                duration: 0.8,
-                ease: 'power3.out',
-            }, '-=0.4')
-            .to('.hero-subtitle', {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
+                duration: 0.5,
+                ease: 'power2.out',
             }, '-=0.3')
-            .to('.hero-cta', {
-                opacity: 1,
-                y: 0,
-                duration: 0.6,
-            }, '-=0.3');
+            .fromTo('.typing-text',
+                {
+                    width: 0,
+                    opacity: 0,
+                },
+                {
+                    width: '100%',
+                    opacity: 1,
+                    duration: 1.5,
+                    ease: 'steps(14)', // 14 characters in "Through Motion"
+                },
+                '-=0.2'
+            )
+            // Subtitle: Slide UP from bottom
+            .fromTo('.hero-subtitle',
+                {
+                    opacity: 0,
+                    y: 40,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.8,
+                    ease: 'power3.out',
+                },
+                '-=0.8'
+            )
+            // CTA: Fade in with slight scale
+            .fromTo('.hero-cta',
+                {
+                    opacity: 0,
+                    y: 20,
+                    scale: 0.95,
+                },
+                {
+                    opacity: 1,
+                    y: 0,
+                    scale: 1,
+                    duration: 0.6,
+                    ease: 'back.out(1.2)',
+                },
+                '-=0.4'
+            );
 
         return () => {
             lenis.destroy();
