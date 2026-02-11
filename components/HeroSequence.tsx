@@ -277,7 +277,7 @@ export default function HeroSequence() {
             <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-black/80 via-black/40 to-transparent z-15 pointer-events-none" />
 
             {/* Hero Text Content - Top Left Corner */}
-            <div className="absolute top-0 left-0 right-0 z-20 pt-20 md:pt-24 px-6 md:px-8">
+            <div className="absolute top-0 left-0 right-0 z-20 pt-20 md:pt-24 px-6 md:px-8 w-full">
                 <div className="max-w-7xl mx-auto">
                     <h1 className="text-3xl md:text-5xl lg:text-7xl font-black mb-6 leading-tight">
                         {/* Line 1 - Slides from LEFT */}

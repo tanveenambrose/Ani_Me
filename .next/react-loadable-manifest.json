@@ -1,56 +1,44 @@
 {
   "app\\page.tsx -> ../components/AboutSection": {
-    "id": 6574,
+    "id": "app\\page.tsx -> ../components/AboutSection",
     "files": [
-      "static/chunks/c15bf2b0.f7282d455f9c4cd9.js",
-      "static/chunks/674.ffef0384a0b08edb.js",
-      "static/chunks/574.7205acf5a72961c4.js"
+      "static/chunks/_app-pages-browser_components_AboutSection_tsx.js"
     ]
   },
   "app\\page.tsx -> ../components/ContactSection": {
-    "id": 5383,
+    "id": "app\\page.tsx -> ../components/ContactSection",
     "files": [
-      "static/chunks/383.3339a531e7c79066.js"
+      "static/chunks/_app-pages-browser_components_ContactSection_tsx.js"
     ]
   },
   "app\\page.tsx -> ../components/Footer": {
-    "id": 8743,
+    "id": "app\\page.tsx -> ../components/Footer",
     "files": [
-      "static/chunks/743.2996a4d783fcd1de.js"
+      "static/chunks/_app-pages-browser_components_Footer_tsx.js"
     ]
   },
   "app\\page.tsx -> ../components/HeroSequence": {
-    "id": 2309,
+    "id": "app\\page.tsx -> ../components/HeroSequence",
     "files": [
-      "static/chunks/c15bf2b0.f7282d455f9c4cd9.js",
-      "static/chunks/674.ffef0384a0b08edb.js",
-      "static/chunks/309.e2b7a41165301698.js"
+      "static/chunks/_app-pages-browser_components_HeroSequence_tsx.js"
     ]
   },
   "app\\page.tsx -> ../components/Navbar": {
-    "id": 3464,
+    "id": "app\\page.tsx -> ../components/Navbar",
     "files": [
-      "static/chunks/464.3099ad0040371feb.js"
+      "static/chunks/_app-pages-browser_components_Navbar_tsx.js"
     ]
   },
   "app\\page.tsx -> ../components/ServicesSection": {
-    "id": 4027,
+    "id": "app\\page.tsx -> ../components/ServicesSection",
     "files": [
-      "static/chunks/c15bf2b0.f7282d455f9c4cd9.js",
-      "static/chunks/674.ffef0384a0b08edb.js",
-      "static/chunks/27.f42bccf9939ee831.js"
+      "static/chunks/_app-pages-browser_components_ServicesSection_tsx.js"
     ]
   },
-  "node_modules\\next\\dist\\client\\index.js -> ../pages/_app": {
-    "id": 5139,
+  "node_modules\\next\\dist\\client\\dev\\hot-reloader\\app\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts": {
+    "id": "node_modules\\next\\dist\\client\\dev\\hot-reloader\\app\\use-websocket.js -> @vercel/turbopack-ecmascript-runtime/browser/dev/hmr-client/hmr-client.ts",
     "files": [
-      "static/chunks/139.7a5a8e93a21948c1.js"
-    ]
-  },
-  "node_modules\\next\\dist\\client\\index.js -> ../pages/_error": {
-    "id": 1646,
-    "files": [
-      "static/chunks/646.f342b7cffc01feb0.js"
+      "static/chunks/_app-pages-browser_node_modules_next_dist_client_dev_noop-turbopack-hmr_js.js"
     ]
   }
 }
