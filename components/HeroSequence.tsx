@@ -64,6 +64,9 @@ export default function HeroSequence() {
             const containerWidth = window.innerWidth;
             const containerHeight = window.innerHeight;
 
+            // Get device pixel ratio for high-DPI displays (Retina, 4K, etc.)
+            const dpr = window.devicePixelRatio || 1;
+
             const imageAspect = firstImage.width / firstImage.height;
             const containerAspect = containerWidth / containerHeight;
 
@@ -77,8 +80,16 @@ export default function HeroSequence() {
                 renderWidth = containerHeight * imageAspect;
             }
 
-            canvas.width = renderWidth;
-            canvas.height = renderHeight;
+            // Set canvas display size (CSS pixels)
+            canvas.style.width = renderWidth + 'px';
+            canvas.style.height = renderHeight + 'px';
+
+            // Set canvas actual size in memory (scaled for high-DPI)
+            canvas.width = renderWidth * dpr;
+            canvas.height = renderHeight * dpr;
+
+            // Scale the context to ensure correct drawing operations
+            context.scale(dpr, dpr);
 
             render();
         };
@@ -89,10 +100,20 @@ export default function HeroSequence() {
                 imagesRef.current.length - 1
             );
 
+            // Get DPR for clearing
+            const dpr = window.devicePixelRatio || 1;
+
             context.clearRect(0, 0, canvas.width, canvas.height);
 
+            // Enable image smoothing for better quality
+            context.imageSmoothingEnabled = true;
+            context.imageSmoothingQuality = 'high';
+
             if (imagesRef.current[frameIndex]) {
-                context.drawImage(imagesRef.current[frameIndex], 0, 0, canvas.width, canvas.height);
+                // Draw at display size (not DPR-scaled size)
+                const displayWidth = canvas.width / dpr;
+                const displayHeight = canvas.height / dpr;
+                context.drawImage(imagesRef.current[frameIndex], 0, 0, displayWidth, displayHeight);
             }
         };
 
