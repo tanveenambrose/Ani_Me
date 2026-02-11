@@ -12,35 +12,45 @@ export default function HeroSequence() {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const containerRef = useRef<HTMLDivElement>(null);
     const [imagesLoaded, setImagesLoaded] = useState(false);
+    const [showContent, setShowContent] = useState(false);
+    const [mounted, setMounted] = useState(false);
     const imagesRef = useRef<HTMLImageElement[]>([]);
     const frameRef = useRef(0);
 
     const frameCount = 80;
 
+    // Prevent hydration errors - client-side only
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
     // Animate preloader counter
     useEffect(() => {
-        if (!imagesLoaded) {
-            const counterElement = document.querySelector('.counter-value');
-            const lineElement = document.querySelector('.preloader-line');
+        if (!mounted || showContent) return;
 
-            if (counterElement && lineElement) {
-                let count = 0;
-                const interval = setInterval(() => {
-                    count += Math.random() * 15;
-                    if (count > 100) count = 100;
+        const counterElement = document.querySelector('.counter-value');
+        const circleElement = document.querySelector('.preloader-circle');
 
-                    counterElement.textContent = Math.floor(count).toString();
-                    (lineElement as HTMLElement).style.width = `${count}%`;
+        if (counterElement && circleElement) {
+            let count = 0;
+            const interval = setInterval(() => {
+                count += Math.random() * 2; // Slower increment for longer display
+                if (count > 100) count = 100;
 
-                    if (count >= 100) {
-                        clearInterval(interval);
-                    }
-                }, 80);
+                counterElement.textContent = Math.floor(count).toString();
 
-                return () => clearInterval(interval);
-            }
+                // Calculate dash offset for circle (283 is the circumference)
+                const offset = 283 - (count / 100) * 283;
+                (circleElement as SVGCircleElement).style.strokeDashoffset = offset.toString();
+
+                if (count >= 100) {
+                    clearInterval(interval);
+                }
+            }, 50); // Faster updates for smoother animation
+
+            return () => clearInterval(interval);
         }
-    }, [imagesLoaded]);
+    }, [mounted, showContent]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
@@ -67,6 +77,11 @@ export default function HeroSequence() {
             try {
                 await Promise.all(imagePromises);
                 setImagesLoaded(true);
+
+                // Keep preloader visible for minimum 3 seconds for animations
+                setTimeout(() => {
+                    setShowContent(true);
+                }, 3000);
             } catch (error) {
                 console.error('Failed to load images:', error);
             }
@@ -244,45 +259,86 @@ export default function HeroSequence() {
                 </div>
             </div>
 
-            {/* Minimal Modern Preloader */}
-            {!imagesLoaded && (
-                <div className="absolute inset-0 z-30 flex items-center justify-center bg-black preloader-minimal">
-                    {/* Preloader content */}
-                    <div className="text-center">
-                        {/* Name with minimal styling */}
-                        <h1
-                            className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tight preloader-name-minimal"
-                            style={{
-                                letterSpacing: '-0.02em'
-                            }}
-                        >
-                            TANVEEN
-                            <br />
-                            <span className="text-white/40">AMBROSE</span>
-                        </h1>
+            {/* Enhanced Minimal Preloader */}
+            {!showContent && mounted && (
+                <div className={`absolute inset-0 z-30 flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black preloader-minimal ${imagesLoaded ? 'preloader-fadeout' : ''}`}>
+                    {/* Animated grid background */}
+                    <div className="absolute inset-0 opacity-10">
+                        <div className="grid-pattern"></div>
+                    </div>
 
-                        {/* Loading percentage counter */}
-                        <div className="relative">
-                            <div
-                                className="text-7xl md:text-9xl font-black text-white preloader-counter"
+                    {/* Preloader content */}
+                    <div className="relative z-10 text-center">
+                        {/* Name with split design */}
+                        <div className="mb-12">
+                            <h1
+                                className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-2 tracking-tight preloader-name-minimal"
                                 style={{
-                                    fontVariantNumeric: 'tabular-nums',
-                                    letterSpacing: '-0.05em'
+                                    letterSpacing: '-0.03em',
+                                    textShadow: '0 0 40px rgba(255,255,255,0.1)'
                                 }}
                             >
-                                <span className="counter-value">0</span>%
-                            </div>
+                                TANVEEN
+                            </h1>
+                            <h2
+                                className="text-3xl md:text-5xl lg:text-6xl font-light text-white/30 tracking-wide preloader-name-minimal"
+                                style={{
+                                    letterSpacing: '0.3em',
+                                    animation: 'slideUp 0.8s ease-out 0.2s both'
+                                }}
+                            >
+                                AMBROSE
+                            </h2>
+                        </div>
 
-                            {/* Minimal line accent */}
-                            <div className="mt-6 mx-auto w-24 h-px bg-white/20">
-                                <div className="h-full bg-white preloader-line" style={{ width: '0%' }}></div>
+                        {/* Circular progress with counter */}
+                        <div className="relative w-40 h-40 md:w-48 md:h-48 mx-auto mb-8">
+                            {/* Circular progress ring */}
+                            <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
+                                <circle
+                                    cx="50"
+                                    cy="50"
+                                    r="45"
+                                    fill="none"
+                                    stroke="rgba(255,255,255,0.1)"
+                                    strokeWidth="2"
+                                />
+                                <circle
+                                    cx="50"
+                                    cy="50"
+                                    r="45"
+                                    fill="none"
+                                    stroke="white"
+                                    strokeWidth="2"
+                                    strokeDasharray="283"
+                                    strokeDashoffset="283"
+                                    className="preloader-circle"
+                                    strokeLinecap="round"
+                                />
+                            </svg>
+
+                            {/* Counter in center */}
+                            <div className="absolute inset-0 flex items-center justify-center">
+                                <div
+                                    className="text-4xl md:text-5xl font-black text-white preloader-counter"
+                                    style={{
+                                        fontVariantNumeric: 'tabular-nums',
+                                        letterSpacing: '-0.05em'
+                                    }}
+                                >
+                                    <span className="counter-value">0</span>
+                                </div>
                             </div>
                         </div>
 
-                        {/* Subtitle */}
-                        <p className="mt-8 text-xs tracking-[0.3em] text-white/30 uppercase preloader-label">
-                            Loading Experience
-                        </p>
+                        {/* Subtitle with dots */}
+                        <div className="flex items-center justify-center gap-3 preloader-label">
+                            <div className="w-8 h-px bg-white/20"></div>
+                            <p className="text-xs tracking-[0.3em] text-white/40 uppercase">
+                                Loading
+                            </p>
+                            <div className="w-8 h-px bg-white/20"></div>
+                        </div>
                     </div>
                 </div>
             )}
