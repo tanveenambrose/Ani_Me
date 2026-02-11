@@ -1,12 +1,6 @@
-@import "tailwindcss";
-
-@theme {
-    --background-image-gradient-radial: radial-gradient(var(--tw-gradient-stops));
-}
-
-@utility bg-gradient-radial {
-    background-image: radial-gradient(var(--tw-gradient-stops));
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 * {
     margin: 0;
