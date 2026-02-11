@@ -196,13 +196,46 @@ body {
     animation: fadeIn 1s ease-out 0.5s both;
 }
 
-/* Typing effect for gradient text */
+/* Minimal Preloader Animations */
+.preloader-minimal {
+    animation: fadeIn 0.3s ease-in;
+}
+
+.preloader-name-minimal {
+    animation: slideUp 0.8s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(30px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.preloader-counter {
+    animation: scaleIn 0.6s ease-out 0.3s both;
+}
+
+.preloader-line {
+    transition: width 0.1s ease-out;
+}
+
+.preloader-label {
+    animation: fadeIn 1s ease-out 0.8s both;
+}
+
+/* Typing effect for gradient text - Updated to gold/orange */
 .typing-text {
     display: inline-block;
     overflow: hidden;
     white-space: nowrap;
     width: 0;
-    border-right: 3px solid rgba(6, 182, 212, 0.8);
+    border-right: 3px solid rgba(251, 191, 36, 0.8);
     animation: blink-caret 0.75s step-end infinite;
 }
 
@@ -210,7 +243,7 @@ body {
 
     from,
     to {
-        border-color: rgba(6, 182, 212, 0.8);
+        border-color: rgba(251, 191, 36, 0.8);
     }
 
     50% {

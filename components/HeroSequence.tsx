@@ -17,6 +17,31 @@ export default function HeroSequence() {
 
     const frameCount = 80;
 
+    // Animate preloader counter
+    useEffect(() => {
+        if (!imagesLoaded) {
+            const counterElement = document.querySelector('.counter-value');
+            const lineElement = document.querySelector('.preloader-line');
+
+            if (counterElement && lineElement) {
+                let count = 0;
+                const interval = setInterval(() => {
+                    count += Math.random() * 15;
+                    if (count > 100) count = 100;
+
+                    counterElement.textContent = Math.floor(count).toString();
+                    (lineElement as HTMLElement).style.width = `${count}%`;
+
+                    if (count >= 100) {
+                        clearInterval(interval);
+                    }
+                }, 80);
+
+                return () => clearInterval(interval);
+            }
+        }
+    }, [imagesLoaded]);
+
     useEffect(() => {
         const canvas = canvasRef.current;
         if (!canvas) return;
@@ -176,9 +201,9 @@ export default function HeroSequence() {
 
                         {/* Line 3 - Typing Effect with Neon Gradient */}
                         <span
-                            className="block opacity-0 hero-line-3 bg-gradient-to-r from-cyan-300 via-blue-400 to-purple-500 text-transparent bg-clip-text font-black relative"
+                            className="block opacity-0 hero-line-3 bg-gradient-to-r from-amber-300 via-orange-400 to-yellow-500 text-transparent bg-clip-text font-black relative"
                             style={{
-                                filter: 'drop-shadow(0 0 25px rgba(6, 182, 212, 0.8)) drop-shadow(0 0 50px rgba(147, 51, 234, 0.6))',
+                                filter: 'drop-shadow(0 0 25px rgba(251, 191, 36, 0.8)) drop-shadow(0 0 50px rgba(249, 115, 22, 0.6))',
                                 textShadow: 'none'
                             }}
                         >
@@ -219,61 +244,44 @@ export default function HeroSequence() {
                 </div>
             </div>
 
-            {/* Custom Preloader */}
+            {/* Minimal Modern Preloader */}
             {!imagesLoaded && (
-                <div className="absolute inset-0 z-30 flex items-center justify-center bg-gradient-to-br from-[#0a0a0f] via-[#1a1a2e] to-[#0a0a0f] preloader-overlay">
-                    {/* Animated particles background */}
-                    <div className="absolute inset-0 overflow-hidden">
-                        <div className="particle particle-1"></div>
-                        <div className="particle particle-2"></div>
-                        <div className="particle particle-3"></div>
-                        <div className="particle particle-4"></div>
-                        <div className="particle particle-5"></div>
-                    </div>
-
+                <div className="absolute inset-0 z-30 flex items-center justify-center bg-black preloader-minimal">
                     {/* Preloader content */}
-                    <div className="relative z-10 text-center px-6">
-                        {/* Greeting text */}
-                        <div className="mb-8">
-                            <h2
-                                className="text-2xl md:text-3xl font-light text-white mb-3 preloader-greeting"
-                                style={{
-                                    textShadow: '0 0 20px rgba(255,255,255,0.3)'
-                                }}
-                            >
-                                Hey it's me -
-                            </h2>
-                            <h1
-                                className="text-5xl md:text-7xl font-black bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text preloader-name"
-                                style={{
-                                    filter: 'drop-shadow(0 0 30px rgba(6, 182, 212, 0.6)) drop-shadow(0 0 60px rgba(147, 51, 234, 0.4))',
-                                    animation: 'gradient-shift 3s ease infinite'
-                                }}
-                            >
-                                Tanveen Ambrose
-                            </h1>
-                        </div>
+                    <div className="text-center">
+                        {/* Name with minimal styling */}
+                        <h1
+                            className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tight preloader-name-minimal"
+                            style={{
+                                letterSpacing: '-0.02em'
+                            }}
+                        >
+                            TANVEEN
+                            <br />
+                            <span className="text-white/40">AMBROSE</span>
+                        </h1>
 
-                        {/* Animated loading bar */}
-                        <div className="relative w-64 md:w-96 mx-auto mb-6">
-                            <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                                <div
-                                    className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-full loading-bar"
-                                    style={{
-                                        boxShadow: '0 0 20px rgba(6, 182, 212, 0.8), 0 0 40px rgba(147, 51, 234, 0.6)'
-                                    }}
-                                ></div>
+                        {/* Loading percentage counter */}
+                        <div className="relative">
+                            <div
+                                className="text-7xl md:text-9xl font-black text-white preloader-counter"
+                                style={{
+                                    fontVariantNumeric: 'tabular-nums',
+                                    letterSpacing: '-0.05em'
+                                }}
+                            >
+                                <span className="counter-value">0</span>%
+                            </div>
+
+                            {/* Minimal line accent */}
+                            <div className="mt-6 mx-auto w-24 h-px bg-white/20">
+                                <div className="h-full bg-white preloader-line" style={{ width: '0%' }}></div>
                             </div>
                         </div>
 
-                        {/* Loading text */}
-                        <p className="text-sm md:text-base text-cyan-200/60 font-light tracking-widest preloader-status">
-                            LOADING EXPERIENCE
-                            <span className="loading-dots">
-                                <span className="dot">.</span>
-                                <span className="dot">.</span>
-                                <span className="dot">.</span>
-                            </span>
+                        {/* Subtitle */}
+                        <p className="mt-8 text-xs tracking-[0.3em] text-white/30 uppercase preloader-label">
+                            Loading Experience
                         </p>
                     </div>
                 </div>
