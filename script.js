@@ -76,43 +76,49 @@ gsap.to('.hero-background', {
     },
 });
 
-// Hero resource items parallax (for your custom animation resources)
-gsap.to('.placeholder-item.item-1', {
-    y: -150,
-    x: 50,
-    rotation: 15,
-    ease: 'none',
-    scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-    },
-});
+// Hero resource items - Image Sequence Animation
+const canvas = document.getElementById('hero-canvas');
+const context = canvas.getContext('2d');
 
-gsap.to('.placeholder-item.item-2', {
-    y: -100,
-    x: -50,
-    rotation: -10,
-    ease: 'none',
-    scrollTrigger: {
-        trigger: '.hero-section',
-        start: 'top top',
-        end: 'bottom top',
-        scrub: true,
-    },
-});
+const frameCount = 80;
+const currentFrame = index => `assets/hero/protfolio_${index.toString().padStart(3, '0')}.jpg`;
 
-gsap.to('.placeholder-item.item-3', {
-    y: -200,
-    scale: 0.8,
+const images = [];
+const imageSequence = {
+    frame: 0
+};
+
+// Preload all images
+for (let i = 0; i < frameCount; i++) {
+    const img = new Image();
+    img.src = currentFrame(i);
+    images.push(img);
+}
+
+// Wait for first image to load and set canvas size
+images[0].onload = function () {
+    canvas.width = this.naturalWidth;
+    canvas.height = this.naturalHeight;
+    render();
+};
+
+function render() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(images[Math.floor(imageSequence.frame)], 0, 0);
+}
+
+// Animate image sequence on scroll
+gsap.to(imageSequence, {
+    frame: frameCount - 1,
+    snap: 'frame',
     ease: 'none',
     scrollTrigger: {
         trigger: '.hero-section',
         start: 'top top',
         end: 'bottom top',
-        scrub: true,
+        scrub: 0.5,
     },
+    onUpdate: render
 });
 
 // Hide scroll indicator on scroll
@@ -208,7 +214,7 @@ statNumbers.forEach((stat) => {
                 duration: 2,
                 ease: 'power2.out',
                 snap: { innerHTML: 1 },
-                onUpdate: function() {
+                onUpdate: function () {
                     stat.innerHTML = Math.ceil(this.targets()[0].innerHTML) + (isPercentage ? '%' : '+');
                 },
             });
@@ -245,8 +251,8 @@ const portfolioItems = gsap.utils.toArray('.portfolio-item');
 
 portfolioItems.forEach((item) => {
     const image = item.querySelector('.portfolio-image');
-    
-    gsap.fromTo(image, 
+
+    gsap.fromTo(image,
         { scale: 1.2 },
         {
             scale: 1,
@@ -289,11 +295,11 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
         const targetId = this.getAttribute('href');
-        
+
         if (targetId === '#') return;
-        
+
         const targetElement = document.querySelector(targetId);
-        
+
         if (targetElement) {
             lenis.scrollTo(targetElement, {
                 offset: -80,
@@ -312,7 +318,7 @@ if (mobileToggle) {
     mobileToggle.addEventListener('click', () => {
         navLinks.classList.toggle('active');
         mobileToggle.classList.toggle('active');
-        
+
         // Animate hamburger icon
         const spans = mobileToggle.querySelectorAll('span');
         if (mobileToggle.classList.contains('active')) {
