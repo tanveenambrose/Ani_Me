@@ -100,10 +100,9 @@ export default function Home() {
 
                     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
                         {[
-                            {
-                                icon: '🎨', title: 'Creative Design', desc: 'Stunning visual designs that capture attention and communicate your brand's unique story.' },
-              { icon: '⚡', title: 'Web Animations', desc: 'Cutting-edge GSAP and scroll-triggered animations for immersive experiences.' },
-              { icon: '🚀', title: 'Performance Optimization', desc: 'Lightning-fast load times and buttery-smooth 60fps animations.' },
+                            { icon: '🎨', title: 'Creative Design', desc: 'Stunning visual designs that capture attention and communicate your brand\'s unique story.' },
+                            { icon: '⚡', title: 'Web Animations', desc: 'Cutting-edge GSAP and scroll-triggered animations for immersive experiences.' },
+                            { icon: '🚀', title: 'Performance Optimization', desc: 'Lightning-fast load times and buttery-smooth 60fps animations.' },
                             { icon: '💎', title: 'Brand Identity', desc: 'Comprehensive branding solutions for a memorable visual presence.' },
                             { icon: '📱', title: 'Responsive Development', desc: 'Pixel-perfect designs that work beautifully on every device.' },
                             { icon: '🎬', title: 'Motion Graphics', desc: 'Dynamic motion graphics that elevate your brand and engage viewers.' },
