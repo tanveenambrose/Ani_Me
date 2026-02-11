@@ -150,14 +150,23 @@ export default function HeroSequence() {
             {/* Hero Text Content - Top Left Corner */}
             <div className="absolute top-0 left-0 right-0 z-20 pt-24 px-8">
                 <div className="max-w-7xl mx-auto">
-                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black text-white mb-4 leading-tight">
-                        <span className="block opacity-0 hero-line-1">Bringing Your</span>
-                        <span className="block opacity-0 hero-line-2">Vision to Life</span>
-                        <span className="block bg-gradient-to-r from-purple-400 via-pink-500 to-purple-600 text-transparent bg-clip-text opacity-0 hero-line-3">
+                    <h1 className="text-4xl md:text-6xl lg:text-7xl font-black mb-4 leading-tight">
+                        <span className="block opacity-0 hero-line-1 text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
+                            Bringing Your
+                        </span>
+                        <span className="block opacity-0 hero-line-2 text-white drop-shadow-[0_0_30px_rgba(255,255,255,0.5)]">
+                            Vision to Life
+                        </span>
+                        <span
+                            className="block opacity-0 hero-line-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text"
+                            style={{
+                                filter: 'drop-shadow(0 0 20px rgba(34, 211, 238, 0.6)) drop-shadow(0 0 40px rgba(147, 51, 234, 0.4))'
+                            }}
+                        >
                             Through Motion
                         </span>
                     </h1>
-                    <p className="text-lg md:text-xl text-gray-300 opacity-0 hero-subtitle max-w-2xl">
+                    <p className="text-lg md:text-xl text-cyan-100 opacity-0 hero-subtitle max-w-2xl drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
                         Crafting immersive digital experiences with cutting-edge animations
                     </p>
                 </div>
@@ -175,10 +184,10 @@ export default function HeroSequence() {
             {/* CTA Buttons - Bottom Center */}
             <div className="absolute bottom-0 left-0 right-0 z-20 pb-12 px-4">
                 <div className="flex flex-wrap gap-4 justify-center opacity-0 hero-cta">
-                    <button className="px-8 py-4 bg-gradient-to-r from-purple-500 to-pink-600 rounded-2xl font-semibold text-lg hover:scale-105 transition-transform shadow-lg">
+                    <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 rounded-2xl font-semibold text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:shadow-[0_0_40px_rgba(34,211,238,0.7)]">
                         View Our Work
                     </button>
-                    <button className="px-8 py-4 bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl font-semibold text-lg hover:bg-white/20 transition-colors">
+                    <button className="px-8 py-4 bg-white/10 backdrop-blur-md border-2 border-cyan-400/50 rounded-2xl font-semibold text-lg hover:bg-cyan-500/20 hover:border-cyan-300 transition-all shadow-lg">
                         Let's Talk
                     </button>
                 </div>
