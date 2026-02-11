@@ -219,11 +219,62 @@ export default function HeroSequence() {
                 </div>
             </div>
 
-            {/* Loading indicator */}
+            {/* Custom Preloader */}
             {!imagesLoaded && (
-                <div className="absolute inset-0 z-30 flex items-center justify-center bg-[#0a0a0f]">
-                    <div className="text-white text-2xl font-semibold">
-                        <div className="animate-pulse">Loading experience...</div>
+                <div className="absolute inset-0 z-30 flex items-center justify-center bg-gradient-to-br from-[#0a0a0f] via-[#1a1a2e] to-[#0a0a0f] preloader-overlay">
+                    {/* Animated particles background */}
+                    <div className="absolute inset-0 overflow-hidden">
+                        <div className="particle particle-1"></div>
+                        <div className="particle particle-2"></div>
+                        <div className="particle particle-3"></div>
+                        <div className="particle particle-4"></div>
+                        <div className="particle particle-5"></div>
+                    </div>
+
+                    {/* Preloader content */}
+                    <div className="relative z-10 text-center px-6">
+                        {/* Greeting text */}
+                        <div className="mb-8">
+                            <h2
+                                className="text-2xl md:text-3xl font-light text-white mb-3 preloader-greeting"
+                                style={{
+                                    textShadow: '0 0 20px rgba(255,255,255,0.3)'
+                                }}
+                            >
+                                Hey it's me -
+                            </h2>
+                            <h1
+                                className="text-5xl md:text-7xl font-black bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text preloader-name"
+                                style={{
+                                    filter: 'drop-shadow(0 0 30px rgba(6, 182, 212, 0.6)) drop-shadow(0 0 60px rgba(147, 51, 234, 0.4))',
+                                    animation: 'gradient-shift 3s ease infinite'
+                                }}
+                            >
+                                Tanveen Ambrose
+                            </h1>
+                        </div>
+
+                        {/* Animated loading bar */}
+                        <div className="relative w-64 md:w-96 mx-auto mb-6">
+                            <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                                <div
+                                    className="h-full bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-full loading-bar"
+                                    style={{
+                                        boxShadow: '0 0 20px rgba(6, 182, 212, 0.8), 0 0 40px rgba(147, 51, 234, 0.6)'
+                                    }}
+                                ></div>
+                            </div>
+                        </div>
+
+                        {/* Loading text */}
+                        <p className="text-sm md:text-base text-cyan-200/60 font-light tracking-widest preloader-status">
+                            LOADING EXPERIENCE
+                            <span className="loading-dots">
+                                <span className="dot">.</span>
+                                <span className="dot">.</span>
+                                <span className="dot">.</span>
+                            </span>
+                        </p>
                     </div>
                 </div>
             )}
