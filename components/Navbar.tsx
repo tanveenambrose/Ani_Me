@@ -43,13 +43,16 @@ export default function Navbar() {
         >
             <div
                 className={`w-full transition-all duration-300 ${isBlurred
-                        ? 'bg-black/50 backdrop-blur-md border-b border-white/10 shadow-lg py-4'
-                        : 'bg-transparent py-6'
+                    ? 'bg-black/50 backdrop-blur-md border-b border-white/10 shadow-lg py-4'
+                    : 'bg-transparent py-6'
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-6 md:px-8 flex items-center justify-between">
                     {/* Logo/Brand */}
-                    <div className="text-2xl font-black bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text cursor-pointer hover:opacity-80 transition-opacity">
+                    <div
+                        onClick={() => window.location.href = '/'}
+                        className="text-2xl font-black bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text cursor-pointer hover:opacity-80 transition-opacity"
+                    >
                         Ani_Me
                     </div>
 
