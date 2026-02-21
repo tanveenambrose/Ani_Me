@@ -7,7 +7,6 @@ export default function AudioPlayer() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
     const [volume, setVolume] = useState(0.8);
-    const [showHint, setShowHint] = useState(true);
     const [isMorphing, setIsMorphing] = useState(false);
     const [scrollState, setScrollState] = useState<'hero' | 'about'>('hero');
     const [showScrollPrompt, setShowScrollPrompt] = useState(false);
@@ -17,7 +16,6 @@ export default function AudioPlayer() {
     useEffect(() => {
         // Increased delay to 4000ms to ensure the preloader is fully gone and hero animation has started
         const timer = setTimeout(() => setIsVisible(true), 4000);
-        const hintTimer = setTimeout(() => setShowHint(false), 12000);
 
         const morphInterval = setInterval(() => {
             setIsMorphing(true);
@@ -57,7 +55,6 @@ export default function AudioPlayer() {
 
         return () => {
             clearTimeout(timer);
-            clearTimeout(hintTimer);
             if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
             clearInterval(morphInterval);
             window.removeEventListener('scroll', handleScroll);
@@ -68,23 +65,34 @@ export default function AudioPlayer() {
     const togglePlay = (e: React.MouseEvent) => {
         e.preventDefault();
         e.stopPropagation();
-        setShowHint(false);
 
         const audio = audioRef.current;
         if (!audio) return;
 
-        audio.muted = false;
-        audio.volume = volume;
-
-        if (isPlaying) {
-            audio.pause();
-            setIsPlaying(false);
+        if (audio.paused) {
+            audio.muted = false;
+            audio.volume = volume;
+            audio.play().catch(err => console.error("Playback failed:", err));
         } else {
-            audio.play()
-                .then(() => setIsPlaying(true))
-                .catch(err => console.error("Playback failed:", err));
+            audio.pause();
         }
     };
+
+    useEffect(() => {
+        const audio = audioRef.current;
+        if (!audio) return;
+
+        const handlePlay = () => setIsPlaying(true);
+        const handlePause = () => setIsPlaying(false);
+
+        audio.addEventListener('play', handlePlay);
+        audio.addEventListener('pause', handlePause);
+
+        return () => {
+            audio.removeEventListener('play', handlePlay);
+            audio.removeEventListener('pause', handlePause);
+        };
+    }, []);
 
     useEffect(() => {
         if (audioRef.current) {
@@ -149,7 +157,7 @@ export default function AudioPlayer() {
                                         animate={{
                                             height: isPlaying
                                                 ? (isMorphing ? "6px" : [6, 24 * h, 12, 20 * h, 6])
-                                                : (!isPlaying && showHint ? [2, 12, 2] : 2),
+                                                : 2,
                                             borderRadius: isMorphing ? "50%" : "999px",
                                             backgroundColor: (i / 7) <= volume ? '#06b6d4' : 'rgba(255,255,255,0.1)',
                                             boxShadow: (i / 7) <= volume && isPlaying ? '0 0 15px #06b6d4' : 'none'
@@ -165,7 +173,7 @@ export default function AudioPlayer() {
                                         animate={{
                                             height: isPlaying
                                                 ? (isMorphing ? "6px" : [6, 24 * h, 12, 20 * h, 6])
-                                                : (!isPlaying && showHint ? [2, 12, 2] : 2),
+                                                : 2,
                                             borderRadius: isMorphing ? "50%" : "999px",
                                             backgroundColor: (i / 7) <= volume ? '#06b6d4' : 'rgba(255,255,255,0.1)',
                                             boxShadow: (i / 7) <= volume && isPlaying ? '0 0 15px #06b6d4' : 'none'
