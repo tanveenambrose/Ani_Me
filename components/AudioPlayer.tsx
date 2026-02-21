@@ -103,9 +103,7 @@ export default function AudioPlayer() {
                         left: scrollState === 'hero' ? '50%' : '5%',
                         // Lowered to the very base to maximize distance from CTA buttons
                         bottom: scrollState === 'hero' ? '25px' : '40px',
-                        x: scrollState === 'hero'
-                            ? (showScrollPrompt ? ["-53%", "-47%", "-53%"] : "-50%")
-                            : "0%",
+                        x: scrollState === 'hero' ? '-50%' : '0%',
                         y: 0
                     }}
                     transition={{
@@ -187,8 +185,14 @@ export default function AudioPlayer() {
                         {showScrollPrompt && scrollState === 'hero' && (
                             <motion.div
                                 initial={{ opacity: 0, y: -5 }}
-                                animate={{ opacity: 1, y: 0 }}
+                                animate={{
+                                    opacity: 1,
+                                    y: [0, 6, 0]
+                                }}
                                 exit={{ opacity: 0, y: -5 }}
+                                transition={{
+                                    y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                                }}
                                 className="mt-4 flex flex-col items-center gap-1.5"
                             >
                                 <div className="w-px h-3 bg-gradient-to-b from-cyan-500/50 to-transparent" />
@@ -198,8 +202,8 @@ export default function AudioPlayer() {
                                     <div className="w-8 h-px bg-gradient-to-l from-transparent to-cyan-500/30" />
                                 </div>
                                 <motion.div
-                                    animate={{ x: [-3, 3, -3] }}
-                                    transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                                    animate={{ y: [0, 4, 0] }}
+                                    transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
                                     className="w-4 h-6 border-2 border-cyan-500/20 rounded-full flex justify-center p-0.5"
                                 >
                                     <motion.div
