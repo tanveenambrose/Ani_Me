@@ -88,14 +88,14 @@ export default function AboutSection() {
             <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600/10 rounded-full blur-[100px] -ml-48 -mb-48 pointer-events-none" />
 
             <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
-                <div className="grid lg:grid-cols-2 gap-20 items-center">
+                <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left: Content */}
                     <div className="space-y-8">
                         <div className="reveal-text">
                             <span className="inline-block px-4 py-1.5 border border-white/20 rounded-full text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-cyan-400 mb-4 bg-white/5 backdrop-blur-sm">
                                 MERN Stack Specialist
                             </span>
-                            <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight">
+                            <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tight">
                                 Building Scalable <br />
                                 <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text">
                                     Digital Solutions
@@ -104,13 +104,13 @@ export default function AboutSection() {
                         </div>
 
                         <div className="reveal-text">
-                            <p className="text-xl md:text-2xl text-gray-400 font-medium leading-relaxed">
+                            <p className="text-lg md:text-xl text-gray-400 font-medium leading-relaxed">
                                 I'm <span className="text-white">Tanveen Ambrose</span>, a MERN Stack Developer and Vibe Coding enthusiast dedicated to turning bold ideas into seamless digital reality.
                             </p>
                         </div>
 
                         <div className="reveal-text max-w-lg">
-                            <p className="text-base md:text-lg text-gray-500 leading-relaxed">
+                            <p className="text-sm md:text-base text-gray-500 leading-relaxed">
                                 "Code with passion, build with purpose." I specialize in architecting clean, maintainable codebases where performance meets beautiful design. From robust backends to immersive glassmorphic interfaces, I build for the future of the web.
                             </p>
                         </div>
@@ -132,7 +132,7 @@ export default function AboutSection() {
                                 { number: '24/7', label: 'Continuous Learning' }
                             ].map((stat, i) => (
                                 <div key={i} className="stat-card p-6 bg-white/[0.03] border border-white/[0.08] rounded-2xl backdrop-blur-md hover:bg-white/[0.08] transition-all group">
-                                    <h3 className="stat-number text-3xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors mb-1">
+                                    <h3 className="stat-number text-2xl md:text-3xl font-black text-white group-hover:text-cyan-400 transition-colors mb-1">
                                         {stat.number}
                                     </h3>
                                     <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{stat.label}</p>
