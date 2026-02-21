@@ -19,6 +19,22 @@ body {
     transition: background-color 0.5s ease, color 0.5s ease;
 }
 
+@media (min-width: 768px) {
+
+    html,
+    body,
+    main {
+        cursor: none !important;
+    }
+
+    a,
+    button,
+    [role="button"],
+    .cursor-pointer {
+        cursor: none !important;
+    }
+}
+
 * {
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
@@ -400,10 +416,10 @@ body {
     z-index: 10;
 }
 
-/* Variety of letter spin animations with unique colors */
+/* Variety of letter spin animations with unique colors - Extended Duration */
 .letter-spin-v1 {
     display: inline-block;
-    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.4s ease, filter 0.4s ease;
+    transition: transform 2.5s cubic-bezier(0.1, 0.9, 0.2, 1), color 0.6s ease, filter 0.6s ease;
     cursor: default;
     will-change: transform;
 }
@@ -411,14 +427,13 @@ body {
 .letter-spin-v1:hover {
     transform: rotateY(360deg) scale(1.2) translateY(-5px);
     color: #00fff9;
-    /* Cyber Cyan */
     filter: drop-shadow(0 10px 15px rgba(0, 255, 249, 0.6));
     z-index: 10;
 }
 
 .letter-spin-v2 {
     display: inline-block;
-    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.4s ease, filter 0.4s ease;
+    transition: transform 2.5s cubic-bezier(0.1, 0.9, 0.2, 1), color 0.6s ease, filter 0.6s ease;
     cursor: default;
     will-change: transform;
 }
@@ -426,14 +441,13 @@ body {
 .letter-spin-v2:hover {
     transform: rotateY(-360deg) scale(1.2) translateY(-5px);
     color: #FF0080;
-    /* Magenta */
     filter: drop-shadow(0 10px 15px rgba(255, 0, 128, 0.6));
     z-index: 10;
 }
 
 .letter-spin-v3 {
     display: inline-block;
-    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.4s ease, filter 0.4s ease;
+    transition: transform 2.5s cubic-bezier(0.1, 0.9, 0.2, 1), color 0.6s ease, filter 0.6s ease;
     cursor: default;
     will-change: transform;
 }
@@ -441,14 +455,13 @@ body {
 .letter-spin-v3:hover {
     transform: rotateX(360deg) scale(1.2) translateY(-5px);
     color: #CAFF33;
-    /* Electric Lime */
     filter: drop-shadow(0 10px 15px rgba(202, 255, 51, 0.6));
     z-index: 10;
 }
 
 .letter-spin-v4 {
     display: inline-block;
-    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.4s ease, filter 0.4s ease;
+    transition: transform 2.5s cubic-bezier(0.1, 0.9, 0.2, 1), color 0.6s ease, filter 0.6s ease;
     cursor: default;
     will-change: transform;
 }
@@ -456,9 +469,27 @@ body {
 .letter-spin-v4:hover {
     transform: rotateX(-360deg) scale(1.2) translateY(-5px);
     color: #FFB347;
-    /* Neon Orange */
     filter: drop-shadow(0 10px 15px rgba(255, 179, 71, 0.6));
     z-index: 10;
+}
+
+/* Eye-catching Music Player Glow */
+@keyframes music-glow-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px rgba(6, 182, 212, 0.1), 0 0 40px rgba(6, 182, 212, 0.05);
+        border-color: rgba(6, 182, 212, 0.2);
+    }
+
+    50% {
+        box-shadow: 0 0 40px rgba(6, 182, 212, 0.4), 0 0 80px rgba(6, 182, 212, 0.2);
+        border-color: rgba(6, 182, 212, 0.5);
+    }
+}
+
+.eye-catching-player {
+    animation: music-glow-pulse 3s ease-in-out infinite !important;
 }
 
 /* Staggered float for second line */

@@ -272,6 +272,7 @@ export default function HeroSequence() {
         <div
             ref={containerRef}
             className="hero-sequence relative w-full h-screen overflow-hidden bg-[#0a0a0f]"
+            suppressHydrationWarning
         >
             {/* Dark Gradient Overlay for Text Visibility */}
             <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-black/80 via-black/40 to-transparent z-15 pointer-events-none" />
@@ -279,7 +280,7 @@ export default function HeroSequence() {
             {/* Hero Text Content - Top Left Corner */}
             <div className="absolute top-0 left-0 right-0 z-20 pt-20 md:pt-24 px-6 md:px-8 w-full">
                 <div className="max-w-7xl mx-auto">
-                    <h1 className="text-3xl md:text-5xl lg:text-7xl font-black mb-6 leading-tight flex flex-col gap-2">
+                    <div className="text-2xl sm:text-3xl md:text-5xl lg:text-7xl font-black mb-4 md:mb-6 leading-tight flex flex-col gap-1 md:gap-2">
                         {/* Line 1 - Varied Spins */}
                         <div className="hero-line-1 opacity-0 floating-text block w-full">
                             {"Bringing Your".split("").map((char, i) => {
@@ -309,30 +310,32 @@ export default function HeroSequence() {
                                 );
                             })}
                         </div>
-
-                        {/* Line 3 - Typing Effect with Neon Gradient */}
-                        <div
-                            className="block opacity-0 hero-line-3 font-black relative hero-glass-section"
-                            style={{
-                                filter: 'drop-shadow(0 0 10px rgba(121, 40, 202, 0.4))',
-                                textShadow: '0.5px 0.5px 0px rgba(255,255,255,0.05)'
-                            }}
-                        >
-                            <span
-                                className="bg-gradient-to-r from-[#7928CA] via-[#FF0080] to-[#00DFD8] text-transparent bg-clip-text glitch-hover cursor-pointer tracking-tight"
-                            >
-                                Through Motion
-                            </span>
-                        </div>
-                    </h1>
+                    </div>
                 </div>
             </div>
 
-            {/* Subtitle - Bottom Right Corner */}
-            <div className="absolute bottom-32 md:bottom-24 right-0 z-20 px-6 md:px-8 text-right" style={{ transform: 'translateY(-15px)' }}>
-                <div className="max-w-xl ml-auto">
+            {/* Subtitle Cluster - Bottom Right Corner (Now higher on mobile) */}
+            <div
+                className="absolute bottom-72 sm:bottom-48 md:bottom-36 right-0 z-20 px-4 sm:px-6 md:px-8 text-right flex flex-col items-end gap-2 md:gap-3"
+                style={{ transform: 'translateY(-15px)' }}
+            >
+                {/* Line 3 - Now part of the Subtitle cluster */}
+                <div
+                    className="opacity-0 hero-line-3 font-black leading-none"
+                    style={{
+                        filter: 'drop-shadow(0 0 10px rgba(121, 40, 202, 0.3))',
+                    }}
+                >
+                    <span
+                        className="text-lg sm:text-2xl md:text-3xl lg:text-4xl bg-gradient-to-r from-[#7928CA] via-[#FF0080] to-[#00DFD8] text-transparent bg-clip-text glitch-hover cursor-pointer tracking-tight uppercase"
+                    >
+                        Through Motion
+                    </span>
+                </div>
+
+                <div className="max-w-[180px] sm:max-w-xs md:max-w-md ml-auto">
                     <p
-                        className="text-base md:text-lg lg:text-xl text-white opacity-0 hero-subtitle font-medium bg-black/40 backdrop-blur-md px-6 py-4 rounded-xl border border-white/10 inline-block shadow-2xl"
+                        className="text-[10px] sm:text-xs md:text-sm text-white opacity-0 hero-subtitle font-medium bg-black/40 backdrop-blur-md px-4 py-2.5 rounded-lg border border-white/10 inline-block shadow-2xl"
                     >
                         Crafting immersive digital experiences with cutting-edge animations
                     </p>
@@ -348,31 +351,28 @@ export default function HeroSequence() {
                 />
             </div>
 
-            {/* CTA Buttons - Bottom Center */}
-            <div className="absolute bottom-24 left-0 right-0 z-20 px-4">
+            {/* CTA Buttons - Bottom Center (Now higher on mobile to maintain gap with Player) */}
+            <div className="absolute bottom-48 sm:bottom-60 left-0 right-0 z-20 px-4">
                 <div className="flex flex-wrap gap-6 justify-center opacity-0 hero-cta">
                     <button
                         onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-                        className="hero-btn-primary px-10 py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-2xl font-bold text-lg text-white shadow-2xl"
+                        className="hero-btn-primary px-6 py-2.5 sm:px-8 sm:py-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-xl font-bold text-sm sm:text-base text-white shadow-2xl transition-transform hover:scale-105 active:scale-95"
                     >
                         View Our Work
                     </button>
-                    <button className="hero-btn-secondary px-10 py-4 backdrop-blur-xl border border-white/20 rounded-2xl font-bold text-lg text-white/90">
+                    <button className="hero-btn-secondary px-6 py-2.5 sm:px-8 sm:py-3 backdrop-blur-xl border border-white/20 rounded-xl font-bold text-sm sm:text-base text-white/90 transition-transform hover:scale-105 active:scale-95">
                         Let's Talk
                     </button>
                 </div>
             </div>
 
-            {/* Scroll Indicator */}
-            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 hero-cta flex flex-col items-center gap-2">
-                <span className="text-[9px] uppercase tracking-[0.4em] text-white/30 font-black">Explore Content</span>
-                <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent animate-bounce" />
-            </div>
-
             {/* Enhanced Minimal Preloader */}
             {
                 !showContent && mounted && (
-                    <div className={`absolute inset-0 z-30 flex items-center justify-center bg-black preloader-minimal ${startFadeOut ? 'preloader-fadeout' : ''}`}>
+                    <div
+                        className={`absolute inset-0 z-30 flex items-center justify-center bg-black preloader-minimal ${startFadeOut ? 'preloader-fadeout' : ''}`}
+                        suppressHydrationWarning
+                    >
                         {/* Animated grid background */}
                         <div className="absolute inset-0 opacity-10">
                             <div className="grid-pattern"></div>
@@ -454,6 +454,6 @@ export default function HeroSequence() {
                     </div>
                 )
             }
-        </div >
+        </div>
     );
 }

@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
 
 // Dynamic imports with SSR disabled to prevent hydration mismatches
@@ -30,15 +31,37 @@ const Navbar = dynamic(() => import('../components/Navbar'), {
     ssr: false
 });
 
+const CustomCursor = dynamic(() => import('../components/CustomCursor'), {
+    ssr: false
+});
+
+const AudioPlayer = dynamic(() => import('../components/AudioPlayer'), {
+    ssr: false
+});
+
 export default function Home() {
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    // Keep the 'main' tag consistent across server/client and mounting states
+    // to prevent extensions from breaking the DOM reconciliation.
     return (
-        <main className="bg-white dark:bg-[#0a0a0f] min-h-screen">
-            <Navbar />
-            <HeroSequence />
-            <AboutSection />
-            <ServicesSection />
-            <ContactSection />
-            <Footer />
+        <main className="bg-white dark:bg-[#0a0a0f] min-h-screen cursor-none" suppressHydrationWarning>
+            {mounted && (
+                <>
+                    <CustomCursor />
+                    <AudioPlayer />
+                    <Navbar />
+                    <HeroSequence />
+                    <AboutSection />
+                    <ServicesSection />
+                    <ContactSection />
+                    <Footer />
+                </>
+            )}
         </main>
     );
 }

@@ -51,7 +51,7 @@ export default function Navbar() {
                     {/* Logo/Brand */}
                     <div
                         onClick={() => window.location.href = '/'}
-                        className="text-2xl font-black bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text cursor-pointer hover:opacity-80 transition-opacity"
+                        className="nav-item text-2xl font-black bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text cursor-pointer hover:opacity-80 transition-all hover:scale-110"
                     >
                         Ani_Me
                     </div>
@@ -68,7 +68,7 @@ export default function Navbar() {
                                             section.scrollIntoView({ behavior: 'smooth' });
                                         }
                                     }}
-                                    className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors relative group"
+                                    className="nav-item text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-all hover:scale-110 relative group"
                                 >
                                     {item}
                                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-gradient-to-r from-rose-400 to-indigo-500 transition-all duration-300 group-hover:w-full" />
@@ -77,8 +77,10 @@ export default function Navbar() {
                         </div>
 
                         <div className="flex items-center gap-4">
-                            <ThemeToggle />
-                            <button className="px-5 py-2 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 border border-black/10 dark:border-white/10 text-black dark:text-white text-sm font-semibold transition-all backdrop-blur-sm">
+                            <div className="nav-item transition-all hover:scale-110">
+                                <ThemeToggle />
+                            </div>
+                            <button className="nav-item px-5 py-2 rounded-full bg-black/5 dark:bg-white/10 hover:bg-black/10 dark:hover:bg-white/20 border border-black/10 dark:border-white/10 text-black dark:text-white text-sm font-semibold transition-all hover:scale-110 backdrop-blur-sm">
                                 Get Started
                             </button>
                         </div>
