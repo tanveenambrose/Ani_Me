@@ -103,8 +103,10 @@ export default function AudioPlayer() {
                         left: scrollState === 'hero' ? '50%' : '5%',
                         // Lowered to the very base to maximize distance from CTA buttons
                         bottom: scrollState === 'hero' ? '25px' : '40px',
-                        x: scrollState === 'hero' ? '-50%' : '0%',
-                        y: showScrollPrompt && scrollState === 'hero' ? [-5, 5, -5] : 0
+                        x: scrollState === 'hero'
+                            ? (showScrollPrompt ? ["-53%", "-47%", "-53%"] : "-50%")
+                            : "0%",
+                        y: 0
                     }}
                     transition={{
                         opacity: { duration: 0.8 },
@@ -196,7 +198,7 @@ export default function AudioPlayer() {
                                     <div className="w-8 h-px bg-gradient-to-l from-transparent to-cyan-500/30" />
                                 </div>
                                 <motion.div
-                                    animate={{ y: [0, 4, 0] }}
+                                    animate={{ x: [-3, 3, -3] }}
                                     transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
                                     className="w-4 h-6 border-2 border-cyan-500/20 rounded-full flex justify-center p-0.5"
                                 >
