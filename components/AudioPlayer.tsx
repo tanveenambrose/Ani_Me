@@ -115,7 +115,7 @@ export default function AudioPlayer() {
 
                     <motion.div
                         id="audio-player"
-                        className="relative flex items-center bg-white/[0.01] backdrop-blur-[60px] border border-white/10 p-1 px-3 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] cursor-pointer overflow-hidden transition-all duration-500 hover:bg-white/[0.03] hover:border-white/20 modern-ui eye-catching-player scale-90 sm:scale-100"
+                        className="relative flex items-center bg-white/[0.01] backdrop-blur-[60px] border border-white/10 p-1 px-3 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.5)] cursor-pointer overflow-hidden modern-ui eye-catching-player scale-90 sm:scale-100 hover:bg-white/[0.03] hover:border-white/20 transition-[background-color,border-color] duration-500"
                         onClick={togglePlay}
                     >
                         <audio
