@@ -79,7 +79,7 @@ export default function AudioPlayer() {
 
     useEffect(() => {
         const audio = audioRef.current;
-        if (!audio) return;
+        if (!audio || !isVisible) return; // Wait for element to mount
 
         const handlePlay = () => setIsPlaying(true);
         const handlePause = () => setIsPlaying(false);
@@ -91,7 +91,7 @@ export default function AudioPlayer() {
             audio.removeEventListener('play', handlePlay);
             audio.removeEventListener('pause', handlePause);
         };
-    }, []);
+    }, [isVisible]);
 
     return (
         <AnimatePresence>
@@ -135,36 +135,34 @@ export default function AudioPlayer() {
                                     className="w-[5px] md:w-2 relative h-full flex items-center"
                                 >
                                     <motion.div
-                                        className="absolute bottom-[50%] left-0 w-full"
+                                        className="absolute bottom-[50%] left-0 w-full rounded-full"
                                         animate={{
                                             height: isPlaying
-                                                ? (isMorphing ? "6px" : 24 * h)
+                                                ? (isMorphing ? [2, 6, 2] : [2, 24 * h, 2])
                                                 : 2,
-                                            borderRadius: "999px",
                                             backgroundColor: isPlaying ? '#22d3ee' : 'rgba(255,255,255,0.1)',
-                                            boxShadow: isPlaying ? '0 0 20px rgba(34, 211, 238, 0.5)' : 'none'
+                                            boxShadow: isPlaying ? '0 0 20px rgba(34, 211, 238, 0.4)' : 'none',
+                                            opacity: isPlaying ? 1 : 0.3
                                         }}
                                         transition={{
-                                            duration: 0.4 + (i * 0.1),
+                                            duration: 0.5 + (i * 0.1),
                                             repeat: isPlaying ? Infinity : 0,
-                                            repeatType: "mirror",
                                             ease: "easeInOut"
                                         }}
                                     />
                                     <motion.div
-                                        className="absolute top-[50%] left-0 w-full"
+                                        className="absolute top-[50%] left-0 w-full rounded-full"
                                         animate={{
                                             height: isPlaying
-                                                ? (isMorphing ? "6px" : 24 * h)
+                                                ? (isMorphing ? [2, 6, 2] : [2, 24 * h, 2])
                                                 : 2,
-                                            borderRadius: "999px",
                                             backgroundColor: isPlaying ? '#22d3ee' : 'rgba(255,255,255,0.1)',
-                                            boxShadow: isPlaying ? '0 0 20px rgba(34, 211, 238, 0.5)' : 'none'
+                                            boxShadow: isPlaying ? '0 0 20px rgba(34, 211, 238, 0.4)' : 'none',
+                                            opacity: isPlaying ? 1 : 0.3
                                         }}
                                         transition={{
-                                            duration: 0.4 + (i * 0.1),
+                                            duration: 0.5 + (i * 0.1),
                                             repeat: isPlaying ? Infinity : 0,
-                                            repeatType: "mirror",
                                             ease: "easeInOut"
                                         }}
                                     />
