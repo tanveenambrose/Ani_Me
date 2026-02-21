@@ -6,7 +6,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function AudioPlayer() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [isVisible, setIsVisible] = useState(false);
-    const [volume, setVolume] = useState(0.8);
     const [isMorphing, setIsMorphing] = useState(false);
     const [scrollState, setScrollState] = useState<'hero' | 'about'>('hero');
     const [showScrollPrompt, setShowScrollPrompt] = useState(false);
@@ -71,7 +70,7 @@ export default function AudioPlayer() {
 
         if (audio.paused) {
             audio.muted = false;
-            audio.volume = volume;
+            audio.volume = 1.0; // Force Maximum Volume
             audio.play().catch(err => console.error("Playback failed:", err));
         } else {
             audio.pause();
@@ -93,12 +92,6 @@ export default function AudioPlayer() {
             audio.removeEventListener('pause', handlePause);
         };
     }, []);
-
-    useEffect(() => {
-        if (audioRef.current) {
-            audioRef.current.volume = volume;
-        }
-    }, [volume]);
 
     return (
         <AnimatePresence>
@@ -135,7 +128,7 @@ export default function AudioPlayer() {
                             preload="auto"
                         />
 
-                        {/* Interactive Waveform */}
+                        {/* Interactive Waveform - Now purely visual play/pause toggle */}
                         <div className="flex items-center gap-[4px] h-12 relative z-10 py-2">
                             <div className="absolute w-full h-[1px] bg-white/20 top-1/2 -translate-y-1/2" />
 
@@ -143,14 +136,6 @@ export default function AudioPlayer() {
                                 <motion.div
                                     key={i}
                                     className="w-[5px] md:w-2 relative h-full flex items-center"
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        const rect = e.currentTarget.parentElement?.getBoundingClientRect();
-                                        if (rect) {
-                                            const clickX = e.clientX - rect.left;
-                                            setVolume(Math.min(1, Math.max(0, clickX / rect.width)));
-                                        }
-                                    }}
                                 >
                                     <motion.div
                                         className="absolute bottom-[50%] left-0 w-full"
@@ -159,8 +144,8 @@ export default function AudioPlayer() {
                                                 ? (isMorphing ? "6px" : [6, 24 * h, 12, 20 * h, 6])
                                                 : 2,
                                             borderRadius: isMorphing ? "50%" : "999px",
-                                            backgroundColor: (i / 7) <= volume ? '#06b6d4' : 'rgba(255,255,255,0.1)',
-                                            boxShadow: (i / 7) <= volume && isPlaying ? '0 0 15px #06b6d4' : 'none'
+                                            backgroundColor: isPlaying ? '#06b6d4' : 'rgba(255,255,255,0.1)',
+                                            boxShadow: isPlaying ? '0 0 15px #06b6d4' : 'none'
                                         }}
                                         transition={{
                                             duration: isPlaying ? 0.6 : 1.2,
@@ -175,8 +160,8 @@ export default function AudioPlayer() {
                                                 ? (isMorphing ? "6px" : [6, 24 * h, 12, 20 * h, 6])
                                                 : 2,
                                             borderRadius: isMorphing ? "50%" : "999px",
-                                            backgroundColor: (i / 7) <= volume ? '#06b6d4' : 'rgba(255,255,255,0.1)',
-                                            boxShadow: (i / 7) <= volume && isPlaying ? '0 0 15px #06b6d4' : 'none'
+                                            backgroundColor: isPlaying ? '#06b6d4' : 'rgba(255,255,255,0.1)',
+                                            boxShadow: isPlaying ? '0 0 15px #06b6d4' : 'none'
                                         }}
                                         transition={{
                                             duration: isPlaying ? 0.6 : 1.2,
