@@ -251,7 +251,7 @@ export default function HeroSequence() {
             scrollTrigger: {
                 trigger: containerRef.current,
                 start: 'top top',
-                end: '+=300%',
+                end: '+=200%',
                 scrub: 1,
                 pin: true,
                 anticipatePin: 1,
@@ -279,39 +279,51 @@ export default function HeroSequence() {
             {/* Hero Text Content - Top Left Corner */}
             <div className="absolute top-0 left-0 right-0 z-20 pt-20 md:pt-24 px-6 md:px-8 w-full">
                 <div className="max-w-7xl mx-auto">
-                    <h1 className="text-3xl md:text-5xl lg:text-7xl font-black mb-6 leading-tight">
-                        {/* Line 1 - Slides from LEFT */}
-                        <span
-                            className="block opacity-0 hero-line-1 text-white font-extrabold"
-                            style={{
-                                textShadow: '0 0 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.7), 2px 2px 4px rgba(0,0,0,1)',
-                            }}
-                        >
-                            Bringing Your
-                        </span>
+                    <h1 className="text-3xl md:text-5xl lg:text-7xl font-black mb-6 leading-tight flex flex-col gap-2">
+                        {/* Line 1 - Varied Spins */}
+                        <div className="hero-line-1 opacity-0 floating-text block w-full">
+                            {"Bringing Your".split("").map((char, i) => {
+                                const spinClass = `letter-spin-v${(i % 4) + 1}`;
+                                return (
+                                    <span key={i} className={`${spinClass} text-white font-extrabold`} style={{
+                                        textShadow: '0 0 20px rgba(0,0,0,0.8), 2px 2px 4px rgba(0,0,0,0.9)',
+                                        display: char === " " ? "inline" : "inline-block"
+                                    }}>
+                                        {char === " " ? "\u00A0" : char}
+                                    </span>
+                                );
+                            })}
+                        </div>
 
-                        {/* Line 2 - Slides from RIGHT */}
-                        <span
-                            className="block opacity-0 hero-line-2 text-white font-extrabold"
-                            style={{
-                                textShadow: '0 0 20px rgba(0,0,0,0.9), 0 0 40px rgba(0,0,0,0.7), 2px 2px 4px rgba(0,0,0,1)',
-                            }}
-                        >
-                            Vision to Life
-                        </span>
+                        {/* Line 2 - Varied Spins */}
+                        <div className="hero-line-2 opacity-0 floating-text-delay block w-full">
+                            {"Vision to Life".split("").map((char, i) => {
+                                const spinClass = `letter-spin-v${(i % 4) + 1}`;
+                                return (
+                                    <span key={i} className={`${spinClass} text-white font-extrabold`} style={{
+                                        textShadow: '0 0 20px rgba(0,0,0,0.8), 2px 2px 4px rgba(0,0,0,0.9)',
+                                        display: char === " " ? "inline" : "inline-block"
+                                    }}>
+                                        {char === " " ? "\u00A0" : char}
+                                    </span>
+                                );
+                            })}
+                        </div>
 
                         {/* Line 3 - Typing Effect with Neon Gradient */}
-                        <span
-                            className="block opacity-0 hero-line-3 font-black relative"
+                        <div
+                            className="block opacity-0 hero-line-3 font-black relative hero-glass-section"
                             style={{
-                                filter: 'drop-shadow(0 0 25px rgba(244, 63, 94, 0.6)) drop-shadow(0 0 50px rgba(168, 85, 247, 0.4))',
-                                textShadow: 'none'
+                                filter: 'drop-shadow(0 0 10px rgba(121, 40, 202, 0.4))',
+                                textShadow: '0.5px 0.5px 0px rgba(255,255,255,0.05)'
                             }}
                         >
-                            <span className="bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text">
+                            <span
+                                className="bg-gradient-to-r from-[#7928CA] via-[#FF0080] to-[#00DFD8] text-transparent bg-clip-text glitch-hover cursor-pointer tracking-tight"
+                            >
                                 Through Motion
                             </span>
-                        </span>
+                        </div>
                     </h1>
                 </div>
             </div>
@@ -321,9 +333,6 @@ export default function HeroSequence() {
                 <div className="max-w-xl ml-auto">
                     <p
                         className="text-base md:text-lg lg:text-xl text-white opacity-0 hero-subtitle font-medium bg-black/40 backdrop-blur-md px-6 py-4 rounded-xl border border-white/10 inline-block shadow-2xl"
-                        style={{
-                            textShadow: '0 2px 4px rgba(0,0,0,0.5)'
-                        }}
                     >
                         Crafting immersive digital experiences with cutting-edge animations
                     </p>
@@ -340,21 +349,30 @@ export default function HeroSequence() {
             </div>
 
             {/* CTA Buttons - Bottom Center */}
-            <div className="absolute bottom-0 left-0 right-0 z-20 pb-12 px-4">
-                <div className="flex flex-wrap gap-4 justify-center opacity-0 hero-cta">
-                    <button className="px-8 py-4 bg-gradient-to-r from-cyan-500 via-blue-600 to-purple-600 rounded-2xl font-semibold text-lg hover:scale-105 transition-transform shadow-[0_0_30px_rgba(34,211,238,0.5)] hover:shadow-[0_0_40px_rgba(34,211,238,0.7)]">
+            <div className="absolute bottom-24 left-0 right-0 z-20 px-4">
+                <div className="flex flex-wrap gap-6 justify-center opacity-0 hero-cta">
+                    <button
+                        onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+                        className="hero-btn-primary px-10 py-4 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-2xl font-bold text-lg text-white shadow-2xl"
+                    >
                         View Our Work
                     </button>
-                    <button className="px-8 py-4 bg-white/10 backdrop-blur-md border-2 border-cyan-400/50 rounded-2xl font-semibold text-lg hover:bg-cyan-500/20 hover:border-cyan-300 transition-all shadow-lg">
+                    <button className="hero-btn-secondary px-10 py-4 backdrop-blur-xl border border-white/20 rounded-2xl font-bold text-lg text-white/90">
                         Let's Talk
                     </button>
                 </div>
             </div>
 
+            {/* Scroll Indicator */}
+            <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 opacity-0 hero-cta flex flex-col items-center gap-2">
+                <span className="text-[9px] uppercase tracking-[0.4em] text-white/30 font-black">Explore Content</span>
+                <div className="w-px h-8 bg-gradient-to-b from-white/40 to-transparent animate-bounce" />
+            </div>
+
             {/* Enhanced Minimal Preloader */}
             {
                 !showContent && mounted && (
-                    <div className={`absolute inset-0 z-30 flex items-center justify-center bg-gradient-to-br from-black via-gray-900 to-black preloader-minimal ${startFadeOut ? 'preloader-fadeout' : ''}`}>
+                    <div className={`absolute inset-0 z-30 flex items-center justify-center bg-black preloader-minimal ${startFadeOut ? 'preloader-fadeout' : ''}`}>
                         {/* Animated grid background */}
                         <div className="absolute inset-0 opacity-10">
                             <div className="grid-pattern"></div>
@@ -365,7 +383,7 @@ export default function HeroSequence() {
                             {/* Name with split design */}
                             <div className="mb-12">
                                 <h1
-                                    className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-2 tracking-tight preloader-name-minimal"
+                                    className="text-5xl md:text-7xl lg:text-8xl font-black text-white mb-2 tracking-tight preloader-name-minimal transition-colors"
                                     style={{
                                         letterSpacing: '-0.03em',
                                         textShadow: '0 0 40px rgba(255,255,255,0.1)'
@@ -374,7 +392,7 @@ export default function HeroSequence() {
                                     TANVEEN
                                 </h1>
                                 <h2
-                                    className="text-3xl md:text-5xl lg:text-6xl font-light text-white/30 tracking-wide preloader-name-minimal"
+                                    className="text-3xl md:text-5xl lg:text-6xl font-light text-white/30 tracking-wide preloader-name-minimal transition-colors"
                                     style={{
                                         letterSpacing: '0.3em',
                                         animation: 'slideUp 0.8s ease-out 0.2s both'
@@ -413,7 +431,7 @@ export default function HeroSequence() {
                                 {/* Counter in center */}
                                 <div className="absolute inset-0 flex items-center justify-center">
                                     <div
-                                        className="text-4xl md:text-5xl font-black text-white preloader-counter"
+                                        className="text-4xl md:text-5xl font-black text-white preloader-counter transition-colors"
                                         style={{
                                             fontVariantNumeric: 'tabular-nums',
                                             letterSpacing: '-0.05em'

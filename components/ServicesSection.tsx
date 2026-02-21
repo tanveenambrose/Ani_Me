@@ -10,15 +10,15 @@ if (typeof window !== 'undefined') {
 
 export default function ServicesSection() {
     return (
-        <section className="min-h-screen bg-[#0a0a0f] py-24 px-4">
+        <section className="min-h-screen bg-white dark:bg-[#0a0a0f] py-24 px-4 transition-colors duration-500">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16 reveal">
-                    <span className="inline-block px-6 py-2 bg-white/5 border border-white/10 rounded-full text-sm font-semibold tracking-wider uppercase text-purple-400 mb-6">
+                    <span className="inline-block px-6 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full text-sm font-semibold tracking-wider uppercase text-purple-600 dark:text-purple-400 mb-6">
                         What We Do
                     </span>
-                    <h2 className="text-4xl md:text-6xl font-black text-white">
+                    <h2 className="text-4xl md:text-6xl font-black text-black dark:text-white transition-colors">
                         Our{' '}
-                        <span className="bg-gradient-to-r from-purple-400 to-pink-600 text-transparent bg-clip-text">
+                        <span className="bg-gradient-to-r from-purple-600 to-pink-600 dark:from-purple-400 dark:to-pink-600 text-transparent bg-clip-text">
                             Services
                         </span>
                     </h2>
@@ -35,13 +35,13 @@ export default function ServicesSection() {
                     ].map((service, i) => (
                         <div
                             key={i}
-                            className="reveal p-8 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-sm hover:bg-white/10 hover:-translate-y-2 transition-all cursor-pointer group"
+                            className="reveal p-8 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-2xl backdrop-blur-sm hover:bg-black/10 dark:hover:bg-white/10 hover:-translate-y-2 transition-all cursor-pointer group"
                         >
                             <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">
                                 {service.icon}
                             </div>
-                            <h3 className="text-2xl font-bold mb-4 text-white">{service.title}</h3>
-                            <p className="text-gray-400 leading-relaxed">{service.desc}</p>
+                            <h3 className="text-2xl font-bold mb-4 text-black dark:text-white transition-colors">{service.title}</h3>
+                            <p className="text-gray-600 dark:text-gray-400 leading-relaxed transition-colors">{service.desc}</p>
                         </div>
                     ))}
                 </div>
