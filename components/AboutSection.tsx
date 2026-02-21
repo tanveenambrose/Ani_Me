@@ -81,7 +81,7 @@ export default function AboutSection() {
         <section
             id="about"
             ref={sectionRef}
-            className="relative min-h-screen bg-[#0a0a0f] py-32 overflow-hidden"
+            className="relative min-h-screen bg-[#0a0a0f] py-20 md:py-32 overflow-hidden"
         >
             {/* Background elements */}
             <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-purple-600/10 rounded-full blur-[120px] -mr-64 -mt-64 pointer-events-none" />
@@ -90,9 +90,9 @@ export default function AboutSection() {
             <div className="max-w-7xl mx-auto px-6 md:px-8 relative z-10">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
                     {/* Left: Content */}
-                    <div className="space-y-8">
+                    <div className="space-y-6 md:space-y-8 text-center lg:text-left order-2 lg:order-1">
                         <div className="reveal-text">
-                            <span className="inline-block px-4 py-1.5 border border-white/20 rounded-full text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-cyan-400 mb-4 bg-white/5 backdrop-blur-sm">
+                            <span className="inline-block px-4 py-1.5 border border-white/20 rounded-full text-[9px] md:text-xs font-bold tracking-[0.2em] uppercase text-cyan-400 mb-4 bg-white/5 backdrop-blur-sm">
                                 MERN Stack Specialist
                             </span>
                             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-white leading-[1.1] tracking-tight">
@@ -109,33 +109,33 @@ export default function AboutSection() {
                             </p>
                         </div>
 
-                        <div className="reveal-text max-w-lg">
-                            <p className="text-sm md:text-base text-gray-500 leading-relaxed">
+                        <div className="reveal-text max-w-lg mx-auto lg:mx-0">
+                            <p className="text-xs md:text-base text-gray-500 leading-relaxed">
                                 "Code with passion, build with purpose." I specialize in architecting clean, maintainable codebases where performance meets beautiful design. From robust backends to immersive glassmorphic interfaces, I build for the future of the web.
                             </p>
                         </div>
 
                         {/* Tech Stack Mini-Gallery */}
-                        <div className="reveal-text flex flex-wrap gap-3 pt-4">
-                            {['React', 'Next.js', 'TypeScript', 'Node.js', 'MongoDB', 'Tailwind'].map((tech) => (
-                                <span key={tech} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-[10px] font-bold text-gray-400 uppercase tracking-tighter hover:bg-white/10 hover:text-cyan-400 transition-colors">
+                        <div className="reveal-text flex flex-wrap justify-center lg:justify-start gap-2 md:gap-3 pt-2">
+                            {['React', 'Next.js', 'TS', 'Node', 'Mongo', 'TW'].map((tech) => (
+                                <span key={tech} className="px-2.5 py-1 bg-white/5 border border-white/10 rounded-lg text-[9px] md:text-[10px] font-bold text-gray-400 uppercase tracking-tighter hover:bg-white/10 hover:text-cyan-400 transition-colors">
                                     {tech}
                                 </span>
                             ))}
                         </div>
 
-                        {/* Stats Container */}
-                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 stats-container">
+                        {/* Stats Container - Compact on Mobile */}
+                        <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 md:gap-6 pt-6 md:pt-10 stats-container">
                             {[
-                                { number: '10+', label: 'Production Apps' },
-                                { number: '100%', label: 'Clean Code' },
-                                { number: '24/7', label: 'Continuous Learning' }
+                                { number: '10+', label: 'Apps' },
+                                { number: '100%', label: 'Clean' },
+                                { number: '24/7', label: 'Learning' }
                             ].map((stat, i) => (
-                                <div key={i} className="stat-card p-6 bg-white/[0.03] border border-white/[0.08] rounded-2xl backdrop-blur-md hover:bg-white/[0.08] transition-all group">
-                                    <h3 className="stat-number text-2xl md:text-3xl font-black text-white group-hover:text-cyan-400 transition-colors mb-1">
+                                <div key={i} className="stat-card p-4 md:p-6 bg-white/[0.03] border border-white/[0.08] rounded-2xl backdrop-blur-md hover:bg-white/[0.08] transition-all group">
+                                    <h3 className="stat-number text-xl md:text-3xl font-black text-white group-hover:text-cyan-400 transition-colors mb-0.5 md:mb-1">
                                         {stat.number}
                                     </h3>
-                                    <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{stat.label}</p>
+                                    <p className="text-[8px] md:text-xs text-gray-500 uppercase tracking-widest font-bold">{stat.label}</p>
                                 </div>
                             ))}
                         </div>
@@ -154,8 +154,8 @@ export default function AboutSection() {
                         </div>
                     </div>
 
-                    {/* Right: Visual Imagery - Floating Photo Slider */}
-                    <div className="relative group reveal-text overflow-visible h-[650px] flex items-center justify-center lg:justify-end">
+                    {/* Right: Visual Imagery - Floating Photo Slider (First on Mobile) */}
+                    <div className="relative group reveal-text overflow-visible h-[450px] sm:h-[550px] lg:h-[650px] flex items-center justify-center lg:justify-end order-1 lg:order-2">
                         <FloatingSlider />
                     </div>
                 </div>

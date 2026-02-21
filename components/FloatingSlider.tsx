@@ -24,10 +24,10 @@ export default function FloatingSlider() {
 
     return (
         <div className="relative w-full h-[600px] flex items-center justify-center overflow-visible">
-            {/* Background Glow */}
-            <div className="absolute inset-0 bg-blue-500/5 blur-[120px] rounded-full pointer-events-none" />
+            {/* Background Glow - More intense on mobile for vibe */}
+            <div className="absolute inset-0 bg-cyan-500/10 blur-[80px] md:blur-[120px] rounded-full pointer-events-none" />
 
-            <div className="relative w-full max-w-[340px] aspect-[3/4]">
+            <div className="relative w-full max-w-[280px] sm:max-w-[340px] aspect-[10/14] sm:aspect-[3/4]">
                 <AnimatePresence mode="popLayout">
                     {images.map((img, index) => {
                         const isMain = index === activeIndex;
@@ -39,58 +39,60 @@ export default function FloatingSlider() {
                         return (
                             <motion.div
                                 key={img.src}
-                                initial={{ opacity: 0, x: 100, scale: 0.8, rotate: 5 }}
+                                initial={{ opacity: 0, x: 50, scale: 0.8, rotate: 5 }}
                                 animate={{
-                                    opacity: isMain ? 1 : 0.4,
-                                    x: isMain ? 0 : isNext ? 100 : -100,
-                                    y: isMain ? 0 : isNext ? 30 : -30,
-                                    scale: isMain ? 1 : 0.75,
-                                    rotate: isMain ? 0 : isNext ? 12 : -12,
+                                    opacity: isMain ? 1 : 0.3,
+                                    x: isMain ? 0 : isNext ? 60 : -60,
+                                    y: isMain ? 0 : isNext ? 20 : -20,
+                                    scale: isMain ? 1 : 0.7,
+                                    rotate: isMain ? 0 : isNext ? 8 : -8,
                                     zIndex: isMain ? 30 : 10,
                                     filter: isMain ? 'blur(0px)' : 'blur(4px)',
                                 }}
                                 whileHover={isMain ? {
                                     scale: 1.05,
-                                    rotateY: 10,
-                                    rotateX: -5,
+                                    rotateY: 8,
+                                    rotateX: -4,
                                     z: 50
                                 } : {}}
-                                exit={{ opacity: 0, x: -100, scale: 0.8, rotate: -5 }}
+                                whileTap={{ scale: 0.95 }}
+                                exit={{ opacity: 0, x: -50, scale: 0.8, rotate: -5 }}
                                 transition={{
                                     type: 'spring',
                                     stiffness: 260,
-                                    damping: 20,
+                                    damping: 25,
                                 }}
                                 className="absolute inset-0 cursor-pointer perspective-[1000px]"
                                 onClick={() => setActiveIndex(index)}
                             >
-                                <div className="group relative w-full h-full rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-gray-900 transition-all duration-500 hover:border-cyan-500/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]">
+                                <div className="group relative w-full h-full rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-gray-900 transition-all duration-500 hover:border-cyan-500/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]">
                                     <Image
                                         src={img.src}
                                         alt={img.title}
                                         fill
                                         className="object-cover transition-transform duration-700 group-hover:scale-110 group-hover:rotate-1"
+                                        sizes="(max-width: 768px) 280px, 340px"
                                         priority={index === 0}
                                     />
 
                                     {/* Glass Overlay for Main Card */}
                                     {isMain && (
                                         <motion.div
-                                            initial={{ opacity: 0, y: 20 }}
+                                            initial={{ opacity: 0, y: 15 }}
                                             animate={{ opacity: 1, y: 0 }}
-                                            className="absolute inset-x-0 bottom-0 p-6 pt-16 bg-gradient-to-t from-black via-black/80 to-transparent"
+                                            className="absolute inset-x-0 bottom-0 p-4 sm:p-6 pt-12 sm:pt-16 bg-gradient-to-t from-black via-black/80 to-transparent"
                                         >
-                                            <span className="inline-block px-3 py-1 rounded-full bg-white/10 backdrop-blur-md text-[9px] font-bold text-cyan-400 tracking-widest uppercase mb-2 border border-white/5">
+                                            <span className="inline-block px-2 py-0.5 rounded-full bg-white/10 backdrop-blur-md text-[8px] sm:text-[9px] font-bold text-cyan-400 tracking-widest uppercase mb-1.5 sm:mb-2 border border-white/5">
                                                 {img.category}
                                             </span>
-                                            <h4 className="text-2xl font-black text-white mb-1 tracking-tight">
+                                            <h4 className="text-xl sm:text-2xl font-black text-white mb-0.5 sm:mb-1 tracking-tight">
                                                 {img.title}
                                             </h4>
-                                            <div className="flex gap-1.5 mt-2">
+                                            <div className="flex gap-1 mt-1.5 sm:mt-2">
                                                 {images.map((_, i) => (
                                                     <div
                                                         key={i}
-                                                        className={`h-1 rounded-full transition-all duration-500 ${i === activeIndex ? 'w-6 bg-cyan-400' : 'w-1.5 bg-white/20'}`}
+                                                        className={`h-1 rounded-full transition-all duration-500 ${i === activeIndex ? 'w-5 sm:w-6 bg-cyan-400' : 'w-1 sm:w-1.5 bg-white/20'}`}
                                                     />
                                                 ))}
                                             </div>
@@ -99,12 +101,12 @@ export default function FloatingSlider() {
 
                                     {/* Hover Shine Effect */}
                                     <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
+                                        <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 ease-in-out" />
                                     </div>
 
                                     {/* Decorative particles */}
-                                    <div className="absolute top-6 right-6 w-1.5 h-1.5 bg-cyan-400/40 rounded-full animate-ping" />
-                                    <div className="absolute bottom-16 left-6 w-1 h-1 bg-white/40 rounded-full animate-pulse delay-700" />
+                                    <div className="absolute top-4 sm:top-6 right-4 sm:right-6 w-1 h-1 sm:w-1.5 sm:h-1.5 bg-cyan-400/40 rounded-full animate-ping" />
+                                    <div className="absolute bottom-12 sm:bottom-16 left-4 sm:left-6 w-0.5 h-0.5 sm:w-1 sm:h-1 bg-white/40 rounded-full animate-pulse delay-700" />
                                 </div>
                             </motion.div>
                         );
