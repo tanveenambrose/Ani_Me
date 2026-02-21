@@ -132,9 +132,9 @@ export default function AboutSection() {
                         </div>
                     </div>
 
-                    {/* Right: Visual Imagery - 3D Photo Carousel */}
-                    <div className="relative group reveal-text overflow-visible h-[600px] flex items-center">
-                        <PhotoCarousel />
+                    {/* Right: Visual Imagery - Floating Photo Slider */}
+                    <div className="relative group reveal-text overflow-visible h-[650px] flex items-center justify-center lg:justify-end">
+                        <FloatingSlider />
                     </div>
                 </div>
             </div>
@@ -143,4 +143,4 @@ export default function AboutSection() {
 }
 
 import dynamic from 'next/dynamic';
-const PhotoCarousel = dynamic(() => import('./PhotoCarousel'), { ssr: false });
+const FloatingSlider = dynamic(() => import('./FloatingSlider'), { ssr: false });
