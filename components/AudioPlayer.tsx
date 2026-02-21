@@ -31,7 +31,7 @@ export default function AudioPlayer() {
                 if (isStillInHero) {
                     setShowScrollPrompt(true);
                 }
-            }, 2000);
+            }, 5000);
         };
 
         const handleScroll = () => {
