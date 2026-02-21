@@ -138,32 +138,34 @@ export default function AudioPlayer() {
                                         className="absolute bottom-[50%] left-0 w-full"
                                         animate={{
                                             height: isPlaying
-                                                ? (isMorphing ? "6px" : [6, 24 * h, 12, 20 * h, 6])
+                                                ? (isMorphing ? "6px" : 24 * h)
                                                 : 2,
-                                            borderRadius: isMorphing ? "50%" : "999px",
-                                            backgroundColor: isPlaying ? '#06b6d4' : 'rgba(255,255,255,0.1)',
-                                            boxShadow: isPlaying ? '0 0 15px #06b6d4' : 'none'
+                                            borderRadius: "999px",
+                                            backgroundColor: isPlaying ? '#22d3ee' : 'rgba(255,255,255,0.1)',
+                                            boxShadow: isPlaying ? '0 0 20px rgba(34, 211, 238, 0.5)' : 'none'
                                         }}
                                         transition={{
-                                            duration: 0.6,
+                                            duration: 0.4 + (i * 0.1),
                                             repeat: isPlaying ? Infinity : 0,
-                                            delay: i * 0.05
+                                            repeatType: "mirror",
+                                            ease: "easeInOut"
                                         }}
                                     />
                                     <motion.div
                                         className="absolute top-[50%] left-0 w-full"
                                         animate={{
                                             height: isPlaying
-                                                ? (isMorphing ? "6px" : [6, 24 * h, 12, 20 * h, 6])
+                                                ? (isMorphing ? "6px" : 24 * h)
                                                 : 2,
-                                            borderRadius: isMorphing ? "50%" : "999px",
-                                            backgroundColor: isPlaying ? '#06b6d4' : 'rgba(255,255,255,0.1)',
-                                            boxShadow: isPlaying ? '0 0 15px #06b6d4' : 'none'
+                                            borderRadius: "999px",
+                                            backgroundColor: isPlaying ? '#22d3ee' : 'rgba(255,255,255,0.1)',
+                                            boxShadow: isPlaying ? '0 0 20px rgba(34, 211, 238, 0.5)' : 'none'
                                         }}
                                         transition={{
-                                            duration: 0.6,
+                                            duration: 0.4 + (i * 0.1),
                                             repeat: isPlaying ? Infinity : 0,
-                                            delay: i * 0.05
+                                            repeatType: "mirror",
+                                            ease: "easeInOut"
                                         }}
                                     />
                                 </motion.div>
