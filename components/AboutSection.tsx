@@ -92,43 +92,65 @@ export default function AboutSection() {
                     {/* Left: Content */}
                     <div className="space-y-8">
                         <div className="reveal-text">
-                            <span className="inline-block px-4 py-1.5 border border-white/20 rounded-full text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-purple-400 mb-4 bg-white/5 backdrop-blur-sm">
-                                The Creative Mind
+                            <span className="inline-block px-4 py-1.5 border border-white/20 rounded-full text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-cyan-400 mb-4 bg-white/5 backdrop-blur-sm">
+                                MERN Stack Specialist
                             </span>
                             <h2 className="text-4xl md:text-6xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight">
-                                Crafting Digital <br />
-                                <span className="bg-gradient-to-r from-purple-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text">
-                                    Reality
+                                Building Scalable <br />
+                                <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 text-transparent bg-clip-text">
+                                    Digital Solutions
                                 </span>
                             </h2>
                         </div>
 
                         <div className="reveal-text">
                             <p className="text-xl md:text-2xl text-gray-400 font-medium leading-relaxed">
-                                We are a world-class design and motion studio, transforming bold visions into immersive digital experiences.
+                                I'm <span className="text-white">Tanveen Ambrose</span>, a MERN Stack Developer and Vibe Coding enthusiast dedicated to turning bold ideas into seamless digital reality.
                             </p>
                         </div>
 
                         <div className="reveal-text max-w-lg">
                             <p className="text-base md:text-lg text-gray-500 leading-relaxed">
-                                Our process bridges the gap between technology and art. We don't just build sites; we create ecosystems where movement and interaction tell your unique story. Every pixel is calculated, and every animation is intentional.
+                                "Code with passion, build with purpose." I specialize in architecting clean, maintainable codebases where performance meets beautiful design. From robust backends to immersive glassmorphic interfaces, I build for the future of the web.
                             </p>
+                        </div>
+
+                        {/* Tech Stack Mini-Gallery */}
+                        <div className="reveal-text flex flex-wrap gap-3 pt-4">
+                            {['React', 'Next.js', 'TypeScript', 'Node.js', 'MongoDB', 'Tailwind'].map((tech) => (
+                                <span key={tech} className="px-3 py-1 bg-white/5 border border-white/10 rounded-lg text-[10px] font-bold text-gray-400 uppercase tracking-tighter hover:bg-white/10 hover:text-cyan-400 transition-colors">
+                                    {tech}
+                                </span>
+                            ))}
                         </div>
 
                         {/* Stats Container */}
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-10 stats-container">
                             {[
-                                { number: '500+', label: 'Projects Done' },
-                                { number: '98%', label: 'Loyal Clients' },
-                                { number: '50+', label: 'Global Awards' }
+                                { number: '10+', label: 'Production Apps' },
+                                { number: '100%', label: 'Clean Code' },
+                                { number: '24/7', label: 'Continuous Learning' }
                             ].map((stat, i) => (
                                 <div key={i} className="stat-card p-6 bg-white/[0.03] border border-white/[0.08] rounded-2xl backdrop-blur-md hover:bg-white/[0.08] transition-all group">
-                                    <h3 className="stat-number text-3xl md:text-4xl font-black text-white group-hover:text-purple-400 transition-colors mb-1">
+                                    <h3 className="stat-number text-3xl md:text-4xl font-black text-white group-hover:text-cyan-400 transition-colors mb-1">
                                         {stat.number}
                                     </h3>
                                     <p className="text-xs text-gray-500 uppercase tracking-widest font-bold">{stat.label}</p>
                                 </div>
                             ))}
+                        </div>
+
+                        <div className="reveal-text pt-4">
+                            <a
+                                href="mailto:racoctanveen15@gmail.com"
+                                className="inline-flex items-center gap-2 text-cyan-400 font-bold text-sm uppercase tracking-widest hover:gap-4 transition-all"
+                            >
+                                Let's build something epic
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </a>
                         </div>
                     </div>
 
