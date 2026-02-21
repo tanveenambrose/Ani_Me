@@ -97,7 +97,7 @@ export default function AudioPlayer() {
         <AnimatePresence>
             {isVisible && (
                 <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+                    initial={{ opacity: 0 }}
                     animate={{
                         opacity: 1,
                         left: scrollState === 'hero' ? '50%' : '5%',
@@ -107,10 +107,7 @@ export default function AudioPlayer() {
                         y: 0
                     }}
                     transition={{
-                        opacity: { duration: 0.8 },
-                        left: { type: 'spring', damping: 22, stiffness: 120 },
-                        bottom: { type: 'spring', damping: 22, stiffness: 120 },
-                        y: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
+                        opacity: { duration: 0.8 }
                     }}
                     className="fixed z-[10000] pointer-events-auto flex flex-col items-center"
                     suppressHydrationWarning
