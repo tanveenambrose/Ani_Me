@@ -635,6 +635,12 @@ video {
 .top-\[50\%\] {
   top: 50%;
 }
+.bottom-80 {
+  bottom: 20rem;
+}
+.bottom-56 {
+  bottom: 14rem;
+}
 .z-10 {
   z-index: 10;
 }
@@ -2252,6 +2258,14 @@ body {
     bottom: 15rem;
   }
 
+  .sm\:bottom-96 {
+    bottom: 24rem;
+  }
+
+  .sm\:bottom-64 {
+    bottom: 16rem;
+  }
+
   .sm\:max-w-xs {
     max-width: 20rem;
   }
@@ -2305,6 +2319,14 @@ body {
 
   .md\:bottom-36 {
     bottom: 9rem;
+  }
+
+  .md\:bottom-\[420px\] {
+    bottom: 420px;
+  }
+
+  .md\:bottom-72 {
+    bottom: 18rem;
   }
 
   .md\:mb-6 {
@@ -2406,6 +2428,14 @@ body {
   }
 }
 @media (min-width: 1024px) {
+
+  .lg\:bottom-\[480px\] {
+    bottom: 480px;
+  }
+
+  .lg\:bottom-80 {
+    bottom: 20rem;
+  }
 
   .lg\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));

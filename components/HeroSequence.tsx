@@ -314,9 +314,9 @@ export default function HeroSequence() {
                 </div>
             </div>
 
-            {/* Subtitle Cluster - Bottom Right Corner (Now higher on mobile) */}
+            {/* Subtitle Cluster - Bottom Right Corner (Physically above CTA on all screens) */}
             <div
-                className="absolute bottom-72 sm:bottom-48 md:bottom-36 right-0 z-20 px-4 sm:px-6 md:px-8 text-right flex flex-col items-end gap-2 md:gap-3"
+                className="absolute bottom-80 sm:bottom-96 md:bottom-[420px] lg:bottom-[480px] right-0 z-20 px-4 sm:px-6 md:px-8 text-right flex flex-col items-end gap-2 md:gap-3"
                 style={{ transform: 'translateY(-15px)' }}
             >
                 {/* Line 3 - Now part of the Subtitle cluster */}
@@ -351,8 +351,8 @@ export default function HeroSequence() {
                 />
             </div>
 
-            {/* CTA Buttons - Bottom Center (Now higher on mobile to maintain gap with Player) */}
-            <div className="absolute bottom-48 sm:bottom-60 left-0 right-0 z-20 px-4">
+            {/* CTA Buttons - Bottom Center (Positioned below the Subtitle cluster) */}
+            <div className="absolute bottom-56 sm:bottom-64 md:bottom-72 lg:bottom-80 left-0 right-0 z-20 px-4">
                 <div className="flex flex-wrap gap-6 justify-center opacity-0 hero-cta">
                     <button
                         onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
