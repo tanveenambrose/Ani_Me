@@ -145,8 +145,8 @@ export default function AudioPlayer() {
                                             boxShadow: isPlaying ? '0 0 15px #06b6d4' : 'none'
                                         }}
                                         transition={{
-                                            duration: isPlaying ? 0.6 : 1.2,
-                                            repeat: isMorphing ? 0 : Infinity,
+                                            duration: 0.6,
+                                            repeat: isPlaying ? Infinity : 0,
                                             delay: i * 0.05
                                         }}
                                     />
@@ -161,8 +161,8 @@ export default function AudioPlayer() {
                                             boxShadow: isPlaying ? '0 0 15px #06b6d4' : 'none'
                                         }}
                                         transition={{
-                                            duration: isPlaying ? 0.6 : 1.2,
-                                            repeat: isMorphing ? 0 : Infinity,
+                                            duration: 0.6,
+                                            repeat: isPlaying ? Infinity : 0,
                                             delay: i * 0.05
                                         }}
                                     />
