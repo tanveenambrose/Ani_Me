@@ -132,26 +132,15 @@ export default function AboutSection() {
                         </div>
                     </div>
 
-                    {/* Right: Visual Imagery */}
-                    <div className="relative group reveal-text">
-                        <div className="aspect-square relative flex items-center justify-center">
-                            {/* Decorative rings */}
-                            <div className="absolute inset-0 border border-white/5 rounded-full animate-[spin_20s_linear_infinite]" />
-                            <div className="absolute inset-12 border border-white/10 rounded-full animate-[spin_15s_linear_infinite_reverse]" />
-
-                            {/* Glass cards */}
-                            <div className="absolute top-0 left-10 w-48 h-64 bg-gradient-to-br from-purple-500/20 to-transparent rounded-3xl backdrop-blur-xl border border-white/10 -rotate-12 transition-transform duration-700 group-hover:-translate-top-5 group-hover:-translate-left-5" />
-                            <div className="absolute bottom-10 right-0 w-56 h-72 bg-gradient-to-br from-indigo-500/20 to-transparent rounded-3xl backdrop-blur-xl border border-white/10 rotate-12 transition-transform duration-700 group-hover:translate-bottom-5 group-hover:translate-right-5" />
-
-                            {/* Center focal point */}
-                            <div className="relative w-72 h-72 bg-gradient-to-br from-purple-600 via-fuchsia-600 to-blue-600 rounded-[4rem] group-hover:rounded-[2rem] transition-all duration-700 flex items-center justify-center overflow-hidden shadow-[0_0_80px_rgba(168,85,247,0.3)]">
-                                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 mix-blend-overlay" />
-                                <div className="text-white text-9xl font-black">A</div>
-                            </div>
-                        </div>
+                    {/* Right: Visual Imagery - 3D Photo Carousel */}
+                    <div className="relative group reveal-text overflow-visible h-[600px] flex items-center">
+                        <PhotoCarousel />
                     </div>
                 </div>
             </div>
         </section>
     );
 }
+
+import dynamic from 'next/dynamic';
+const PhotoCarousel = dynamic(() => import('./PhotoCarousel'), { ssr: false });
