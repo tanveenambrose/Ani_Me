@@ -19,10 +19,6 @@ const ServicesSection = dynamic(() => import('../components/ServicesSection'), {
     ssr: false
 });
 
-const ProfessionalSection = dynamic(() => import('../components/ProfessionalSection'), {
-    ssr: false
-});
-
 const ContactSection = dynamic(() => import('../components/ContactSection'), {
     ssr: false
 });
@@ -61,7 +57,6 @@ export default function Home() {
                     <Navbar />
                     <HeroSequence />
                     <AboutSection />
-                    <ProfessionalSection />
                     <ServicesSection />
                     <ContactSection />
                     <Footer />
