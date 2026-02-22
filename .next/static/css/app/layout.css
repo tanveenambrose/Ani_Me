@@ -1552,7 +1552,9 @@ video {
     box-sizing: border-box;
 }
 
-html {}
+html {
+    scroll-behavior: initial;
+}
 
 body {
     font-family: 'Inter', sans-serif;
@@ -2055,51 +2057,185 @@ body {
     will-change: transform;
 }
 
-/* Premium Hero Button Effects */
+/* Premium Hero Button Effects - ENHANCED */
 .hero-btn-primary {
     position: relative;
     overflow: hidden;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     background-size: 200% auto;
+    z-index: 1;
 }
 
-.hero-btn-primary:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(6, 182, 212, 0.4),
-        0 0 20px rgba(168, 85, 247, 0.4);
+.hero-btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg,
+            transparent,
+            rgba(255, 255, 255, 0.4),
+            transparent);
+    transition: 0.5s;
+    z-index: -1;
+}
+
+.hero-btn-primary:hover::before,
+.hero-btn-primary.animate-idle::before {
+    left: 100%;
+}
+
+.hero-btn-primary:hover,
+.hero-btn-primary.animate-idle {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 30px rgba(6, 182, 212, 0.6),
+        0 0 60px rgba(168, 85, 247, 0.3);
     background-position: right center;
+    letter-spacing: 1px;
 }
 
-.hero-btn-primary:active {
-    transform: translateY(-2px) scale(0.98);
+/* Glitch for Primary */
+.hero-btn-primary:hover::after,
+.hero-btn-primary.animate-idle::after {
+    content: 'View Our Work';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.5;
+    z-index: -2;
+    animation: button-glitch 0.3s infinite;
+}
+
+@keyframes button-glitch {
+    0% {
+        transform: translate(2px, -2px);
+        filter: hue-rotate(90deg) blur(1px);
+    }
+
+    25% {
+        transform: translate(-2px, 2px);
+        filter: hue-rotate(180deg) blur(0px);
+    }
+
+    50% {
+        transform: translate(1px, 1px);
+        filter: hue-rotate(270deg) blur(1px);
+    }
+
+    75% {
+        transform: translate(-1px, -1px);
+        filter: hue-rotate(360deg) blur(0px);
+    }
+
+    100% {
+        transform: translate(0);
+    }
 }
 
 .hero-btn-secondary {
     position: relative;
     transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     background: rgba(255, 255, 255, 0.05);
+    overflow: hidden;
 }
 
-.hero-btn-secondary:hover {
-    background: rgba(255, 255, 255, 0.1);
+.hero-btn-secondary:hover,
+.hero-btn-secondary.animate-idle {
+    background: rgba(255, 255, 255, 0.15);
     border-color: rgba(34, 211, 238, 0.8) !important;
-    transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(34, 211, 238, 0.2);
 }
 
-.hero-btn-secondary::after {
+.hero-btn-secondary::before {
     content: '';
     position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    background: linear-gradient(45deg, #22d3ee, #818cf8, #d946ef);
-    z-index: -1;
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    top: 0;
+    left: -100%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(to right,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    transform: skewX(-25deg);
+    transition: 0.5s;
 }
 
-.hero-btn-secondary:hover::after {
-    opacity: 0.3;
+.hero-btn-secondary:hover::before,
+.hero-btn-secondary.animate-idle::before {
+    left: 150%;
+}
+
+.hero-btn-secondary:hover,
+.hero-btn-secondary.animate-idle {
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+    animation: float-btn 2s ease-in-out infinite;
+}
+
+@keyframes float-btn {
+
+    0%,
+    100% {
+        transform: translateY(-5px) scale(1.05);
+    }
+
+    50% {
+        transform: translateY(-8px) scale(1.06);
+    }
+}
+
+/* Glitch for Secondary */
+.hero-btn-secondary:hover::after,
+.hero-btn-secondary.animate-idle::after {
+    content: 'Let\'s Talk';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.8;
+    z-index: -1;
+    color: #22d3ee;
+    animation: button-glitch-text 0.2s infinite;
+}
+
+@keyframes button-glitch-text {
+    0% {
+        transform: translate(-2px, 2px);
+        clip-path: inset(10% 0 30% 0);
+    }
+
+    25% {
+        transform: translate(2px, -2px);
+        clip-path: inset(40% 0 10% 0);
+    }
+
+    50% {
+        transform: translate(-1px, -1px);
+        clip-path: inset(20% 0 50% 0);
+    }
+
+    75% {
+        transform: translate(1px, 1px);
+        clip-path: inset(60% 0 20% 0);
+    }
+
+    100% {
+        transform: translate(0);
+    }
 }
 
 /* Glassmorphism Section Hover for Line 3 */

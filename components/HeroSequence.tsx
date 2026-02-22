@@ -15,9 +15,11 @@ export default function HeroSequence() {
     const [showContent, setShowContent] = useState(false);
     const [startFadeOut, setStartFadeOut] = useState(false);
     const [mounted, setMounted] = useState(false);
+    const [isIdle, setIsIdle] = useState(false);
 
     const imagesRef = useRef<HTMLImageElement[]>([]);
     const frameRef = useRef(0);
+    const idleTimerRef = useRef<NodeJS.Timeout | null>(null);
 
     const frameCount = 80;
 
@@ -25,6 +27,37 @@ export default function HeroSequence() {
     useEffect(() => {
         setMounted(true);
     }, []);
+
+    // Idle Detection for Eye-Catching CTA Animations
+    useEffect(() => {
+        if (!mounted || !showContent) return;
+
+        const handleResetIdle = () => {
+            setIsIdle(false);
+            if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+
+            idleTimerRef.current = setTimeout(() => {
+                // Only set idle if we are still at the top of the page
+                if (window.scrollY < 100) {
+                    setIsIdle(true);
+                }
+            }, 6000); // 6 seconds of inactivity to trigger "Hey look at me"
+        };
+
+        window.addEventListener('scroll', handleResetIdle);
+        window.addEventListener('mousemove', handleResetIdle);
+        window.addEventListener('touchstart', handleResetIdle);
+
+        // Initial timer
+        handleResetIdle();
+
+        return () => {
+            window.removeEventListener('scroll', handleResetIdle);
+            window.removeEventListener('mousemove', handleResetIdle);
+            window.removeEventListener('touchstart', handleResetIdle);
+            if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+        };
+    }, [mounted, showContent]);
 
     // Animate preloader counter
     useEffect(() => {
@@ -356,11 +389,11 @@ export default function HeroSequence() {
                 <div className="flex flex-wrap gap-6 justify-center opacity-0 hero-cta">
                     <button
                         onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
-                        className="hero-btn-primary px-6 py-2.5 sm:px-8 sm:py-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-xl font-bold text-sm sm:text-base text-white shadow-2xl transition-transform hover:scale-105 active:scale-95"
+                        className={`hero-btn-primary px-6 py-2.5 sm:px-8 sm:py-3 bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 rounded-xl font-bold text-sm sm:text-base text-white shadow-2xl transition-transform active:scale-95 ${isIdle ? 'animate-idle' : 'hover:scale-105'}`}
                     >
                         View Our Work
                     </button>
-                    <button className="hero-btn-secondary px-6 py-2.5 sm:px-8 sm:py-3 backdrop-blur-xl border border-white/20 rounded-xl font-bold text-sm sm:text-base text-white/90 transition-transform hover:scale-105 active:scale-95">
+                    <button className={`hero-btn-secondary px-6 py-2.5 sm:px-8 sm:py-3 backdrop-blur-xl border border-white/20 rounded-xl font-bold text-sm sm:text-base text-white/90 transition-transform active:scale-95 ${isIdle ? 'animate-idle' : 'hover:scale-105'}`}>
                         Let's Talk
                     </button>
                 </div>
