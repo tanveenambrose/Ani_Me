@@ -3,6 +3,7 @@ import { Inter } from 'next/font/google'
 import './globals.css'
 
 import { ThemeProvider } from '@/components/ThemeProvider'
+import SmoothScrolling from '@/components/SmoothScrolling'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -32,7 +33,9 @@ export default function RootLayout({
                     enableSystem
                     disableTransitionOnChange
                 >
-                    {children}
+                    <SmoothScrolling>
+                        {children}
+                    </SmoothScrolling>
                 </ThemeProvider>
             </body>
         </html>
