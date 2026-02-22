@@ -7,8 +7,15 @@ import { ThemeProvider } from '@/components/ThemeProvider'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-    title: 'Ani_Me | Premium Animated Promotional Experience',
-    description: 'Experience cutting-edge web animations and stunning visual design. Ani_Me brings your brand to life with scroll-driven storytelling.',
+    title: "Tanveen's Protfolio",
+    description: 'A premium MERN Stack Developer portfolio showcasing cutting-edge web animations and stunning visual design.',
+    icons: {
+        icon: [
+            { url: '/favicon.ico' },
+            { url: '/icon.png' }
+        ],
+        apple: '/icon.png',
+    }
 }
 
 export default function RootLayout({

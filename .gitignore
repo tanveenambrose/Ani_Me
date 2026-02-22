@@ -43,3 +43,8 @@ build/
 .Spotlight-V100
 .Trashes
 ehthumbs.db
+
+# Next.js
+.next/
+out/
+.vercel/

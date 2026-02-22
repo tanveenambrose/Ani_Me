@@ -51,9 +51,29 @@ export default function Navbar() {
                     {/* Logo/Brand */}
                     <div
                         onClick={() => window.location.href = '/'}
-                        className="nav-item text-2xl font-black bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text cursor-pointer hover:opacity-80 transition-all hover:scale-110"
+                        className="nav-item flex items-center gap-2 group cursor-pointer"
                     >
-                        Ani_Me
+                        <div className="relative w-8 h-8 overflow-hidden rounded-lg bg-white/10 p-1 group-hover:bg-white/20 transition-all border border-white/10 group-hover:scale-110">
+                            <img
+                                src="/icon.png"
+                                alt="TA Logo"
+                                className="w-full h-full object-cover"
+                                onError={(e) => {
+                                    // Fallback if icon.png doesn't exist yet
+                                    e.currentTarget.style.display = 'none';
+                                    const parent = e.currentTarget.parentElement;
+                                    if (parent) {
+                                        const span = document.createElement('span');
+                                        span.innerText = 'T';
+                                        span.className = 'text-white font-bold text-lg flex items-center justify-center h-full';
+                                        parent.appendChild(span);
+                                    }
+                                }}
+                            />
+                        </div>
+                        <span className="text-xl md:text-2xl font-black bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500 text-transparent bg-clip-text hover:opacity-80 transition-all group-hover:translate-x-1">
+                            Tanveen
+                        </span>
                     </div>
 
                     {/* Navigation Links */}

@@ -9,8 +9,34 @@ if (typeof window !== 'undefined') {
 }
 
 export default function ServicesSection() {
+    const sectionRef = useRef<HTMLElement>(null);
+
+    useEffect(() => {
+        if (!sectionRef.current) return;
+
+        const revealElements = sectionRef.current.querySelectorAll('.reveal');
+        revealElements.forEach((el, i) => {
+            gsap.fromTo(el,
+                { opacity: 0, y: 50, filter: 'blur(10px)' },
+                {
+                    opacity: 1,
+                    y: 0,
+                    filter: 'blur(0px)',
+                    duration: 1,
+                    ease: 'power3.out',
+                    scrollTrigger: {
+                        trigger: el,
+                        start: 'top 90%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    delay: i * 0.1
+                }
+            );
+        });
+    }, []);
+
     return (
-        <section className="min-h-screen bg-white dark:bg-[#0a0a0f] py-24 px-4 transition-colors duration-500">
+        <section ref={sectionRef} id="services-section" className="min-h-screen bg-white dark:bg-[#0a0a0f] py-24 px-4 transition-colors duration-500">
             <div className="max-w-7xl mx-auto">
                 <div className="text-center mb-16 reveal">
                     <span className="inline-block px-6 py-2 bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full text-sm font-semibold tracking-wider uppercase text-purple-600 dark:text-purple-400 mb-6">

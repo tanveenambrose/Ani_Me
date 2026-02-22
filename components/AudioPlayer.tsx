@@ -100,10 +100,11 @@ export default function AudioPlayer() {
                     initial={{ opacity: 0 }}
                     animate={{
                         opacity: 1,
-                        left: scrollState === 'hero' ? '50%' : '5%',
+                        // Move to bottom right (95% left, -100% x) when in about section
+                        left: scrollState === 'hero' ? '50%' : '95%',
                         // Lowered to the very base to maximize distance from CTA buttons
                         bottom: scrollState === 'hero' ? '25px' : '40px',
-                        x: scrollState === 'hero' ? '-50%' : '0%',
+                        x: scrollState === 'hero' ? '-50%' : '-100%',
                         y: 0
                     }}
                     transition={{
