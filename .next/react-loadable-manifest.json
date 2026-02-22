@@ -41,6 +41,12 @@
       "static/chunks/_app-pages-browser_components_Navbar_tsx.js"
     ]
   },
+  "app\\page.tsx -> ../components/ProfessionalSection": {
+    "id": "app\\page.tsx -> ../components/ProfessionalSection",
+    "files": [
+      "static/chunks/_app-pages-browser_components_ProfessionalSection_tsx.js"
+    ]
+  },
   "app\\page.tsx -> ../components/ServicesSection": {
     "id": "app\\page.tsx -> ../components/ServicesSection",
     "files": [
