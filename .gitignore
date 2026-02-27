@@ -33,6 +33,8 @@ dist/
 build/
 *.min.js
 *.min.css
+build_error.txt
+build_log.txt
 
 # Temporary files
 *.tmp
