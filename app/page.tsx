@@ -8,7 +8,7 @@ import dynamic from 'next/dynamic';
 
 const HeroSequence = dynamic(() => import('../components/HeroSequence'), {
     ssr: false,
-    loading: () => <div className="w-full h-screen bg-[#0a0a0f]" />
+    loading: () => <div className="w-full h-screen bg-[#0a0a0f]" suppressHydrationWarning />
 });
 
 const AboutSection = dynamic(() => import('../components/AboutSection'), {

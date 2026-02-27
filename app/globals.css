@@ -35,7 +35,8 @@ body {
     }
 }
 
-* {
+/* transitions are expensive when applied to all elements, so we only apply them where needed */
+.theme-transition {
     transition: background-color 0.5s ease, color 0.5s ease, border-color 0.5s ease;
 }
 

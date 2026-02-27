@@ -264,10 +264,6 @@ export default function HeroSequence() {
 
             context.clearRect(0, 0, canvas.width, canvas.height);
 
-            // Enable image smoothing for better quality
-            context.imageSmoothingEnabled = true;
-            context.imageSmoothingQuality = 'high';
-
             if (imagesRef.current[frameIndex]) {
                 // Draw at display size (not DPR-scaled size)
                 const displayWidth = canvas.width / dpr;
@@ -276,7 +272,13 @@ export default function HeroSequence() {
             }
         };
 
-        setCanvasSize();
+        const initCanvas = () => {
+            context.imageSmoothingEnabled = true;
+            context.imageSmoothingQuality = 'high';
+            setCanvasSize();
+        };
+
+        initCanvas();
         window.addEventListener('resize', setCanvasSize);
 
         // Create scroll animation
@@ -285,7 +287,7 @@ export default function HeroSequence() {
                 trigger: containerRef.current,
                 start: 'top top',
                 end: '+=200%',
-                scrub: 1,
+                scrub: 1.5, // Increased for smoother "weighty" follow
                 pin: true,
                 anticipatePin: 1,
                 onUpdate: (self) => {
@@ -306,6 +308,7 @@ export default function HeroSequence() {
             ref={containerRef}
             className="hero-sequence relative w-full h-screen overflow-hidden bg-[#0a0a0f]"
             suppressHydrationWarning
+            style={{ willChange: "transform" }}
         >
             {/* Dark Gradient Overlay for Text Visibility */}
             <div className="absolute top-0 left-0 right-0 h-1/2 bg-gradient-to-b from-black/80 via-black/40 to-transparent z-15 pointer-events-none" />
@@ -321,7 +324,8 @@ export default function HeroSequence() {
                                 return (
                                     <span key={i} className={`${spinClass} text-white font-extrabold`} style={{
                                         textShadow: '0 0 20px rgba(0,0,0,0.8), 2px 2px 4px rgba(0,0,0,0.9)',
-                                        display: char === " " ? "inline" : "inline-block"
+                                        display: char === " " ? "inline" : "inline-block",
+                                        willChange: "transform, opacity"
                                     }}>
                                         {char === " " ? "\u00A0" : char}
                                     </span>
@@ -336,7 +340,8 @@ export default function HeroSequence() {
                                 return (
                                     <span key={i} className={`${spinClass} text-white font-extrabold`} style={{
                                         textShadow: '0 0 20px rgba(0,0,0,0.8), 2px 2px 4px rgba(0,0,0,0.9)',
-                                        display: char === " " ? "inline" : "inline-block"
+                                        display: char === " " ? "inline" : "inline-block",
+                                        willChange: "transform, opacity"
                                     }}>
                                         {char === " " ? "\u00A0" : char}
                                     </span>

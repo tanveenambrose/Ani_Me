@@ -131,7 +131,7 @@ export default function AboutSection() {
                                 { number: '100%', label: 'Clean' },
                                 { number: '24/7', label: 'Learning' }
                             ].map((stat, i) => (
-                                <div key={i} className="stat-card p-4 md:p-6 bg-white/[0.03] border border-white/[0.08] rounded-2xl backdrop-blur-md hover:bg-white/[0.08] transition-all group">
+                                <div key={i} className="stat-card p-4 md:p-6 bg-white/[0.03] border border-white/[0.08] rounded-2xl backdrop-blur-md hover:bg-white/[0.08] transition-all group" style={{ willChange: "transform, opacity" }}>
                                     <h3 className="stat-number text-xl md:text-3xl font-black text-white group-hover:text-cyan-400 transition-colors mb-0.5 md:mb-1">
                                         {stat.number}
                                     </h3>

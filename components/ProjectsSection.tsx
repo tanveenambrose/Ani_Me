@@ -77,6 +77,7 @@ function InteractiveCard({ project, index }: { project: typeof projects[0]; inde
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             className="group relative w-full aspect-[16/10] md:aspect-[21/9] rounded-[2rem] overflow-hidden bg-[#0a0a0f] border border-white/10"
+            style={{ willChange: "transform, opacity" }}
         >
             {/* Background Preview */}
             <div className="absolute inset-0 z-0">
@@ -89,13 +90,16 @@ function InteractiveCard({ project, index }: { project: typeof projects[0]; inde
                     }}
                 />
 
-                {/* Live Iframe */}
+                {/* Live Iframe - Only load when hovered to save resources */}
                 <div className={`absolute inset-0 transition-opacity duration-1000 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-                    <iframe
-                        src={project.demo}
-                        className="w-[200%] h-[200%] scale-50 origin-top-left pointer-events-none"
-                        title={project.title}
-                    />
+                    {isHovered && (
+                        <iframe
+                            src={project.demo}
+                            className="w-[200%] h-[200%] scale-50 origin-top-left pointer-events-none"
+                            title={project.title}
+                            loading="lazy"
+                        />
+                    )}
                     {/* Interaction Shield */}
                     <div className="absolute inset-0 bg-transparent z-20" />
                 </div>

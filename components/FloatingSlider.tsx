@@ -63,6 +63,7 @@ export default function FloatingSlider() {
                                     damping: 25,
                                 }}
                                 className="absolute inset-0 cursor-pointer perspective-[1000px]"
+                                style={{ willChange: "transform, opacity" }}
                                 onClick={() => setActiveIndex(index)}
                             >
                                 <div className="group relative w-full h-full rounded-[1.5rem] sm:rounded-[2rem] overflow-hidden border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-gray-900 transition-all duration-500 hover:border-cyan-500/50 hover:shadow-[0_0_30px_rgba(6,182,212,0.3)]">
