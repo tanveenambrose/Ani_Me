@@ -3,7 +3,7 @@
 import { useEffect, useState, useRef } from 'react';
 import { motion, useSpring, useMotionValue, AnimatePresence, useVelocity, useTransform } from 'framer-motion';
 
-const TRAIL_COUNT = 8;
+const TRAIL_COUNT = 4;
 
 export default function CustomCursor() {
     const [mounted, setMounted] = useState(false);
@@ -24,13 +24,13 @@ export default function CustomCursor() {
     const scaleY = useTransform(smoothVelY, [-3000, 0, 3000], [1.3, 1, 1.3]);
     const angle = useTransform(smoothVelX, [0, 3000], [0, 10]);
 
-    const springConfig = { damping: 25, stiffness: 350, mass: 0.5 };
+    const springConfig = { damping: 30, stiffness: 400, mass: 0.5 };
     const cursorX = useSpring(mouseX, springConfig);
     const cursorY = useSpring(mouseY, springConfig);
 
     const trails = Array.from({ length: TRAIL_COUNT }).map((_, i) => ({
-        x: useSpring(mouseX, { damping: 20 + i * 3, stiffness: 250 - i * 25, mass: 0.4 + i * 0.05 }),
-        y: useSpring(mouseY, { damping: 20 + i * 3, stiffness: 250 - i * 25, mass: 0.4 + i * 0.05 }),
+        x: useSpring(mouseX, { damping: 25 + i * 5, stiffness: 300 - i * 50, mass: 0.5 }),
+        y: useSpring(mouseY, { damping: 25 + i * 5, stiffness: 300 - i * 50, mass: 0.5 }),
     }));
 
     useEffect(() => {
@@ -98,11 +98,10 @@ export default function CustomCursor() {
                         y: pos.y,
                         translateX: '-50%',
                         translateY: '-50%',
-                        width: 8 - i * 0.5,
-                        height: 8 - i * 0.5,
+                        width: 6 - i,
+                        height: 6 - i,
                         background: i % 2 === 0 ? '#22d3ee' : '#a855f7',
-                        filter: `blur(${i * 1.5}px)`,
-                        opacity: (1 - i / TRAIL_COUNT) * 0.4,
+                        opacity: (1 - i / TRAIL_COUNT) * 0.3,
                     }}
                 />
             ))}
@@ -131,7 +130,6 @@ export default function CustomCursor() {
                     backgroundColor: isNav
                         ? 'rgba(34, 211, 238, 0.02)'
                         : (isMusic ? 'rgba(255, 255, 255, 0.02)' : (isGlass ? 'rgba(255, 255, 255, 0.05)' : 'rgba(255, 255, 255, 0)')),
-                    backdropFilter: isNav ? 'none' : (isGlass ? 'blur(10px)' : 'blur(0px)'),
                     opacity: (isMusic || isNav) ? 0.8 : 1,
                 }}
                 transition={{ type: 'spring', damping: 25 }}

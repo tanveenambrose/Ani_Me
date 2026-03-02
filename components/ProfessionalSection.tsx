@@ -23,7 +23,7 @@ const techStack = [
 ];
 
 const floatingLogos = [
-    'JS', 'TS', 'JSX', 'NODE', 'DB', 'APP', 'WEB', 'UI', 'UX', 'API', 'GIT', 'MERN'
+    'JS', 'TS', 'NODE', 'DB', 'UI', 'API'
 ];
 
 export default function ProfessionalSection() {

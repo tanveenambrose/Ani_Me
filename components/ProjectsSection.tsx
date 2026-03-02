@@ -2,50 +2,68 @@
 
 import { useEffect, useRef, useState, useMemo } from 'react';
 import { motion, useScroll, useTransform, useSpring, AnimatePresence } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Github, ExternalLink, ArrowRight, MousePointer2 } from 'lucide-react';
-
-if (typeof window !== 'undefined') {
-    gsap.registerPlugin(ScrollTrigger);
-}
 
 const projects = [
     {
-        title: "Power Rangers",
-        description: "An immersive story-based frontend experience built with advanced animations and cinematic storytelling.",
-        image: "https://images.unsplash.com/photo-1614728263952-84ea206f99b6?q=80&w=1000&auto=format&fit=crop",
-        github: "https://github.com/tanveenambrose/power-rangers",
-        demo: "https://power-rangers-zeta.vercel.app",
-        category: "Creative Frontend",
-        color: "#9333ea"
-    },
-    {
-        title: "X-Game",
-        description: "A dynamic gaming-focused website featuring interactive elements and a high-energy aesthetic.",
-        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop",
-        github: "https://github.com/tanveenambrose/xgame",
-        demo: "https://xgame-psi.vercel.app/",
-        category: "Gaming Web",
-        color: "#3b82f6"
+        title: "Ani_Me",
+        description: "A high-speed anime discovery and streaming platform built with TypeScript and modern aesthetics.",
+        image: "https://images.unsplash.com/photo-1541562232579-512a21360020?q=80&w=1000&auto=format&fit=crop",
+        hoverImage: "https://images.unsplash.com/photo-1601850494422-3cf14624b0bb?q=80&w=1000&auto=format&fit=crop",
+        github: "https://github.com/tanveenambrose/Ani_Me",
+        demo: "https://ani-me-three.vercel.app",
+        category: "Entertainment",
+        color: "#f43f5e"
     },
     {
         title: "Fast-Go-Travel",
-        description: "A comprehensive travel booking platform with a clean UI and seamless search functionality.",
-        image: "https://images.unsplash.com/photo-1436491865332-7a61a109c0f3?q=80&w=1000&auto=format&fit=crop",
+        description: "Modern travel agency platform featuring global destination scouting and seamless booking UI.",
+        image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1000&auto=format&fit=crop",
+        hoverImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop",
         github: "https://github.com/tanveenambrose/Fast-Go-Travel",
         demo: "https://fast-go-travel.vercel.app",
-        category: "Booking System",
-        color: "#ec4899"
+        category: "Travel",
+        color: "#0ea5e9"
     },
     {
-        title: "World Atlas",
-        description: "API-driven data visualization platform exploring country details, flags, and global statistics.",
-        image: "https://images.unsplash.com/photo-1521295121783-8a321d551ad2?q=80&w=1000&auto=format&fit=crop",
-        github: "https://github.com/tanveenambrose/worldaltas",
-        demo: "https://tanveenambrose.github.io/worldaltas/",
-        category: "API Integration",
-        color: "#10b981"
+        title: "Vibe E-commerce",
+        description: "A sleek, lifestyle-focused shopping experience with clean product management and smooth transitions.",
+        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop",
+        hoverImage: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop",
+        github: "https://github.com/tanveenambrose/ecommerce-vibe-website",
+        demo: "https://ecommerce-vibe-website-client.vercel.app/",
+        category: "E-Commerce",
+        color: "#8b5cf6"
+    },
+    {
+        title: "X-Game",
+        description: "Interactive gaming portal showcasing multiple game projects with a high-energy digital aesthetic.",
+        image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000&auto=format&fit=crop",
+        hoverImage: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop",
+        github: "https://github.com/tanveenambrose/xgame",
+        demo: "https://xgame-psi.vercel.app/",
+        category: "Gaming",
+        color: "#22d3ee"
+    },
+    {
+        title: "Power Rangers",
+        description: "A unique character-driven storytelling experience utilizing advanced frontend motion systems.",
+        image: "https://images.unsplash.com/photo-1562914313-7b6914f63ad2?q=80&w=1000&auto=format&fit=crop",
+        hoverImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1000&auto=format&fit=crop",
+        github: "https://github.com/tanveenambrose/power-rangers",
+        demo: "https://power-rangers-zeta.vercel.app",
+        category: "Storytelling",
+        color: "#f59e0b"
+    },
+    {
+        title: "Movie Lens",
+        description: "API-powered cinematic explorer featuring high-quality visuals and movie discovery tools.",
+        image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1000&auto=format&fit=crop",
+        hoverImage: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1000&auto=format&fit=crop",
+        github: "https://github.com/tanveenambrose/project-one",
+        demo: "https://github.com/tanveenambrose/project-one",
+        category: "Cinema",
+        color: "#ec4899"
     }
 ];
 
@@ -70,19 +88,19 @@ function InteractiveCard({ project, index }: { project: typeof projects[0]; inde
     return (
         <motion.div
             ref={cardRef}
-            initial={{ opacity: 0, y: 100, rotateX: 20 }}
-            whileInView={{ opacity: 1, y: 0, rotateX: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: index * 0.1, ease: [0.215, 0.61, 0.355, 1] }}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.6, delay: (index % 3) * 0.1, ease: "easeOut" }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
-            className="group relative w-full aspect-[16/10] md:aspect-[21/9] rounded-[2rem] overflow-hidden bg-[#0a0a0f] border border-white/10"
+            className="group relative w-full aspect-[3/4] rounded-[2rem] overflow-hidden bg-[#0a0a0f] border border-white/10"
             style={{ willChange: "transform, opacity" }}
         >
             {/* Background Preview */}
             <div className="absolute inset-0 z-0">
                 <div
-                    className={`absolute inset-0 transition-all duration-1000 ease-out z-10 ${isHovered ? 'opacity-0 scale-110 blur-xl' : 'opacity-40 scale-100 blur-0'}`}
+                    className={`absolute inset-0 transition-all duration-1000 ease-out z-10 ${isHovered ? 'opacity-0 scale-110' : 'opacity-40 scale-100'}`}
                     style={{
                         backgroundImage: `url(${project.image})`,
                         backgroundSize: 'cover',
@@ -90,51 +108,34 @@ function InteractiveCard({ project, index }: { project: typeof projects[0]; inde
                     }}
                 />
 
-                {/* Live Iframe - Only load when hovered to save resources */}
-                <div className={`absolute inset-0 transition-opacity duration-1000 ${isHovered ? 'opacity-100' : 'opacity-0'}`}>
-                    {isHovered && (
-                        <iframe
-                            src={project.demo}
-                            className="w-[200%] h-[200%] scale-50 origin-top-left pointer-events-none"
-                            title={project.title}
-                            loading="lazy"
-                        />
-                    )}
-                    {/* Interaction Shield */}
-                    <div className="absolute inset-0 bg-transparent z-20" />
-                </div>
+                {/* Hover Image */}
+                <div
+                    className={`absolute inset-0 transition-all duration-1000 ease-out z-10 ${isHovered ? 'opacity-70 scale-100' : 'opacity-0 scale-95'}`}
+                    style={{
+                        backgroundImage: `url(${project.hoverImage})`,
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                    }}
+                />
 
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-transparent to-transparent z-10" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0f] via-[#0a0a0f]/40 to-transparent z-10" />
             </div>
 
             {/* Content Sidebar */}
-            <div className="relative z-30 h-full w-full p-8 md:p-16 flex flex-col justify-end md:justify-center max-w-2xl">
-                <motion.div
-                    animate={{ x: isHovered ? 20 : 0 }}
-                    transition={{ type: "spring", stiffness: 100, damping: 20 }}
-                >
-                    <span className="inline-block px-4 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-bold tracking-[0.2em] uppercase text-purple-400 mb-6 backdrop-blur-md">
+            <div className="relative z-30 h-full w-full p-6 md:p-10 flex flex-col justify-end">
+                <div className={`transition-transform duration-500 ${isHovered ? 'translate-y-[-10px]' : 'translate-y-0'}`}>
+                    <span className="inline-block px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] font-bold tracking-[0.2em] uppercase text-purple-400 mb-4 backdrop-blur-md">
                         {project.category}
                     </span>
-                    <h3 className="text-4xl md:text-7xl font-black text-white mb-6 tracking-tighter leading-none">
-                        {project.title.split('').map((char, i) => (
-                            <motion.span
-                                key={i}
-                                initial={{ opacity: 0.5 }}
-                                animate={{ opacity: isHovered ? 1 : 0.5, y: isHovered ? -5 : 0 }}
-                                transition={{ delay: i * 0.02 }}
-                                className="inline-block"
-                            >
-                                {char === ' ' ? '\u00A0' : char}
-                            </motion.span>
-                        ))}
+                    <h3 className="text-3xl md:text-4xl font-black text-white mb-4 tracking-tighter leading-none">
+                        {project.title}
                     </h3>
-                    <p className={`text-gray-400 text-lg md:text-xl max-w-lg mb-10 transition-all duration-500 ${isHovered ? 'opacity-100 translate-x-4' : 'opacity-60 overflow-hidden'}`}>
+                    <p className={`text-gray-400 text-sm md:text-base max-w-lg mb-8 transition-opacity duration-500 ${isHovered ? 'opacity-100' : 'opacity-60 line-clamp-2'}`}>
                         {project.description}
                     </p>
 
-                    <div className="flex flex-wrap gap-6">
+                    <div className="flex flex-wrap gap-4">
                         <div
                             ref={magnetRef}
                             onMouseMove={handleMagnet}
@@ -146,17 +147,11 @@ function InteractiveCard({ project, index }: { project: typeof projects[0]; inde
                                 href={project.demo}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group/btn relative px-8 py-4 bg-white text-black rounded-full font-bold flex items-center gap-3 overflow-hidden"
+                                className="group/btn relative px-6 py-3 bg-white text-black rounded-full text-sm font-bold flex items-center gap-2 overflow-hidden"
                             >
-                                <span className="relative z-10">Launch Project</span>
-                                <ArrowRight className="relative z-10 group-hover/btn:translate-x-2 transition-transform" />
-                                <motion.div
-                                    className="absolute inset-0 bg-purple-600 z-0"
-                                    initial={{ y: "100%" }}
-                                    whileHover={{ y: 0 }}
-                                    transition={{ type: "tween" }}
-                                />
-                                <span className="absolute inset-0 bg-purple-600 opacity-0 group-hover/btn:opacity-100 transition-opacity" />
+                                <span className="relative z-10">Launch</span>
+                                <ArrowRight className="relative z-10 group-hover/btn:translate-x-1 transition-transform" size={16} />
+                                <div className="absolute inset-0 bg-purple-600 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300 z-0" />
                             </a>
                         </div>
 
@@ -164,53 +159,17 @@ function InteractiveCard({ project, index }: { project: typeof projects[0]; inde
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="px-8 py-4 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white rounded-full font-bold flex items-center gap-3 transition-all"
+                            className="px-6 py-3 bg-white/5 hover:bg-white/10 backdrop-blur-xl border border-white/10 text-white rounded-full text-sm font-bold flex items-center gap-2 transition-all"
                         >
-                            <Github size={20} />
-                            <span>Source Code</span>
+                            <Github size={16} />
+                            <span>Source</span>
                         </a>
                     </div>
-                </motion.div>
+                </div>
             </div>
 
-            {/* Floating Decorative Elements */}
-            <AnimatePresence>
-                {isHovered && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        className="absolute inset-0 z-20 pointer-events-none overflow-hidden"
-                    >
-                        {[...Array(5)].map((_, i) => (
-                            <motion.div
-                                key={i}
-                                className="absolute rounded-full border border-white/10 backdrop-blur-sm"
-                                style={{
-                                    width: Math.random() * 100 + 50,
-                                    height: Math.random() * 100 + 50,
-                                    left: `${Math.random() * 100}%`,
-                                    top: `${Math.random() * 100}%`,
-                                }}
-                                animate={{
-                                    y: [0, -50, 0],
-                                    x: [0, 30, 0],
-                                    rotate: 360,
-                                    scale: [1, 1.2, 1],
-                                }}
-                                transition={{
-                                    duration: Math.random() * 5 + 5,
-                                    repeat: Infinity,
-                                    ease: "easeInOut",
-                                }}
-                            />
-                        ))}
-                    </motion.div>
-                )}
-            </AnimatePresence>
-
             {/* Corner Spotlight */}
-            <div className={`absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[100px] transition-all duration-1000 opacity-0 group-hover:opacity-40`}
+            <div className={`absolute -right-20 -top-20 w-80 h-80 rounded-full blur-[100px] transition-all duration-1000 opacity-0 group-hover:opacity-30`}
                 style={{ backgroundColor: project.color }}
             />
         </motion.div>
@@ -224,8 +183,7 @@ export default function ProjectsSection() {
         offset: ["start end", "end start"]
     });
 
-    const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
-    const textSkew = useTransform(scrollYProgress, [0, 1], [0, 5]);
+    const backgroundY = useTransform(scrollYProgress, [0, 1], ["0%", "10%"]);
 
     return (
         <section
@@ -244,26 +202,26 @@ export default function ProjectsSection() {
             </div>
 
             <div className="relative z-10 max-w-[1600px] mx-auto">
-                <div className="flex flex-col md:flex-row md:items-end justify-between mb-32 gap-8">
-                    <motion.div style={{ skewY: textSkew }}>
+                <div className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8">
+                    <div>
                         <span className="inline-block text-purple-500 font-mono text-sm tracking-[0.5em] uppercase mb-4">
-                            Selected Works (01-04)
+                            Selected Works (01-06)
                         </span>
-                        <h2 className="text-6xl md:text-[10rem] font-black text-white leading-[0.85] tracking-tighter">
+                        <h2 className="text-6xl md:text-[8rem] font-black text-white leading-[0.85] tracking-tighter">
                             CRAFTING<br />
                             <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500">EXPERIENCES</span>
                         </h2>
-                    </motion.div>
+                    </div>
 
                     <div className="max-w-md">
-                        <p className="text-gray-400 text-xl leading-relaxed">
+                        <p className="text-gray-400 text-lg leading-relaxed">
                             A showcase of digital products where cutting-edge technology meets unconventional design patterns.
                         </p>
                         <div className="h-px w-full bg-gradient-to-r from-purple-500 to-transparent mt-8" />
                     </div>
                 </div>
 
-                <div className="flex flex-col gap-12 md:gap-32">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-12">
                     {projects.map((project, i) => (
                         <InteractiveCard key={i} project={project} index={i} />
                     ))}

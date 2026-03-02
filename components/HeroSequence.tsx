@@ -324,8 +324,7 @@ export default function HeroSequence() {
                                 return (
                                     <span key={i} className={`${spinClass} text-white font-extrabold`} style={{
                                         textShadow: '0 0 20px rgba(0,0,0,0.8), 2px 2px 4px rgba(0,0,0,0.9)',
-                                        display: char === " " ? "inline" : "inline-block",
-                                        willChange: "transform, opacity"
+                                        display: char === " " ? "inline" : "inline-block"
                                     }}>
                                         {char === " " ? "\u00A0" : char}
                                     </span>
@@ -340,8 +339,7 @@ export default function HeroSequence() {
                                 return (
                                     <span key={i} className={`${spinClass} text-white font-extrabold`} style={{
                                         textShadow: '0 0 20px rgba(0,0,0,0.8), 2px 2px 4px rgba(0,0,0,0.9)',
-                                        display: char === " " ? "inline" : "inline-block",
-                                        willChange: "transform, opacity"
+                                        display: char === " " ? "inline" : "inline-block"
                                     }}>
                                         {char === " " ? "\u00A0" : char}
                                     </span>
