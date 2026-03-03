@@ -6,10 +6,20 @@ import { Github, ExternalLink, ArrowRight, MousePointer2 } from 'lucide-react';
 
 const projects = [
     {
+        title: "Ani_Me",
+        description: "A premium motion design portfolio featuring high-speed discovery and cinematic streaming aesthetics.",
+        image: "/projects/ani-me.png",
+        hoverImage: "/projects/ani-me.png",
+        github: "https://github.com/tanveenambrose/Ani_Me",
+        demo: "https://ani-me-three.vercel.app",
+        category: "Portfolio",
+        color: "#f43f5e"
+    },
+    {
         title: "Fast-Go-Travel",
         description: "Modern travel agency platform featuring global destination scouting and seamless booking UI.",
-        image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1000&auto=format&fit=crop",
-        hoverImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop",
+        image: "/projects/fast-go-travel.png",
+        hoverImage: "/projects/fast-go-travel.png",
         github: "https://github.com/tanveenambrose/Fast-Go-Travel",
         demo: "https://fast-go-travel.vercel.app",
         category: "Travel",
@@ -18,8 +28,8 @@ const projects = [
     {
         title: "Vibe E-commerce",
         description: "A sleek, lifestyle-focused shopping experience with clean product management and smooth transitions.",
-        image: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e12?q=80&w=1000&auto=format&fit=crop",
-        hoverImage: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1000&auto=format&fit=crop",
+        image: "/projects/vibe-ecommerce.png",
+        hoverImage: "/projects/vibe-ecommerce.png",
         github: "https://github.com/tanveenambrose/ecommerce-vibe-website",
         demo: "https://ecommerce-vibe-website-client.vercel.app/",
         category: "E-Commerce",
@@ -28,8 +38,8 @@ const projects = [
     {
         title: "X-Game",
         description: "Interactive gaming portal showcasing multiple game projects with a high-energy digital aesthetic.",
-        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop",
-        hoverImage: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000&auto=format&fit=crop",
+        image: "/projects/x-game.png",
+        hoverImage: "/projects/x-game.png",
         github: "https://github.com/tanveenambrose/xgame",
         demo: "https://xgame-psi.vercel.app/",
         category: "Gaming",
@@ -38,8 +48,8 @@ const projects = [
     {
         title: "Power Rangers",
         description: "A unique character-driven storytelling experience utilizing advanced frontend motion systems.",
-        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop",
-        hoverImage: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop",
+        image: "/projects/power-rangers.png",
+        hoverImage: "/projects/power-rangers.png",
         github: "https://github.com/tanveenambrose/power-rangers",
         demo: "https://power-rangers-zeta.vercel.app",
         category: "Storytelling",
