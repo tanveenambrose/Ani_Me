@@ -6,19 +6,9 @@ import { Github, ExternalLink, ArrowRight, MousePointer2 } from 'lucide-react';
 
 const projects = [
     {
-        title: "Ani_Me",
-        description: "A high-speed anime discovery and streaming platform built with TypeScript and modern aesthetics.",
-        image: "https://images.unsplash.com/photo-1541562232579-512a21360020?q=80&w=1000&auto=format&fit=crop",
-        hoverImage: "https://images.unsplash.com/photo-1601850494422-3cf14624b0bb?q=80&w=1000&auto=format&fit=crop",
-        github: "https://github.com/tanveenambrose/Ani_Me",
-        demo: "https://ani-me-three.vercel.app",
-        category: "Entertainment",
-        color: "#f43f5e"
-    },
-    {
         title: "Fast-Go-Travel",
         description: "Modern travel agency platform featuring global destination scouting and seamless booking UI.",
-        image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1000&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1000&auto=format&fit=crop",
         hoverImage: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1000&auto=format&fit=crop",
         github: "https://github.com/tanveenambrose/Fast-Go-Travel",
         demo: "https://fast-go-travel.vercel.app",
@@ -28,8 +18,8 @@ const projects = [
     {
         title: "Vibe E-commerce",
         description: "A sleek, lifestyle-focused shopping experience with clean product management and smooth transitions.",
-        image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=1000&auto=format&fit=crop",
-        hoverImage: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1000&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1441984904996-e0b6ba687e12?q=80&w=1000&auto=format&fit=crop",
+        hoverImage: "https://images.unsplash.com/photo-1523381210434-271e8be1f52b?q=80&w=1000&auto=format&fit=crop",
         github: "https://github.com/tanveenambrose/ecommerce-vibe-website",
         demo: "https://ecommerce-vibe-website-client.vercel.app/",
         category: "E-Commerce",
@@ -38,8 +28,8 @@ const projects = [
     {
         title: "X-Game",
         description: "Interactive gaming portal showcasing multiple game projects with a high-energy digital aesthetic.",
-        image: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000&auto=format&fit=crop",
-        hoverImage: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1542751371-adc38448a05e?q=80&w=1000&auto=format&fit=crop",
+        hoverImage: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1000&auto=format&fit=crop",
         github: "https://github.com/tanveenambrose/xgame",
         demo: "https://xgame-psi.vercel.app/",
         category: "Gaming",
@@ -48,8 +38,8 @@ const projects = [
     {
         title: "Power Rangers",
         description: "A unique character-driven storytelling experience utilizing advanced frontend motion systems.",
-        image: "https://images.unsplash.com/photo-1562914313-7b6914f63ad2?q=80&w=1000&auto=format&fit=crop",
-        hoverImage: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?q=80&w=1000&auto=format&fit=crop",
+        image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1000&auto=format&fit=crop",
+        hoverImage: "https://images.unsplash.com/photo-1620641788421-7a1c342ea42e?q=80&w=1000&auto=format&fit=crop",
         github: "https://github.com/tanveenambrose/power-rangers",
         demo: "https://power-rangers-zeta.vercel.app",
         category: "Storytelling",
@@ -59,7 +49,7 @@ const projects = [
         title: "Movie Lens",
         description: "API-powered cinematic explorer featuring high-quality visuals and movie discovery tools.",
         image: "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1000&auto=format&fit=crop",
-        hoverImage: "https://images.unsplash.com/photo-1478720568477-152d9b164e26?q=80&w=1000&auto=format&fit=crop",
+        hoverImage: "https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=1000&auto=format&fit=crop",
         github: "https://github.com/tanveenambrose/project-one",
         demo: "https://github.com/tanveenambrose/project-one",
         category: "Cinema",
