@@ -6,16 +6,6 @@ import { Github, ExternalLink, ArrowRight, MousePointer2 } from 'lucide-react';
 
 const projects = [
     {
-        title: "Ani_Me",
-        description: "A premium motion design portfolio featuring high-speed discovery and cinematic streaming aesthetics.",
-        image: "/projects/ani-me.png",
-        hoverImage: "/projects/ani-me.png",
-        github: "https://github.com/tanveenambrose/Ani_Me",
-        demo: "https://ani-me-three.vercel.app",
-        category: "Portfolio",
-        color: "#f43f5e"
-    },
-    {
         title: "Fast-Go-Travel",
         description: "Modern travel agency platform featuring global destination scouting and seamless booking UI.",
         image: "/projects/fast-go-travel.png",
@@ -238,7 +228,7 @@ export default function ProjectsSection() {
                 <div className="flex flex-col lg:flex-row lg:items-end justify-between mb-16 md:mb-24 gap-8 md:gap-12">
                     <div className="max-w-4xl">
                         <span className="inline-block text-purple-500 font-mono text-xs sm:text-sm tracking-[0.3em] md:tracking-[0.5em] uppercase mb-4">
-                            Selected Works (01-06)
+                            Selected Works (01-05)
                         </span>
                         <h2 className="text-[clamp(2.5rem,10vw,8rem)] font-black text-white leading-[0.9] tracking-tighter">
                             CRAFTING<br />
